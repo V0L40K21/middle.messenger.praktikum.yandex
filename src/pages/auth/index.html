@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <style>
+      @import "./auth.scss";
+    </style>
+    <title>Авторизация</title>
+  </head>
+  <body>
+    <div class="auth">
+      <div class="auth-container">
+        <h1 class="auth__header">Вход</h1>
+        <form class="auth__form">
+          <input
+            name="login"
+            type="text"
+            class="auth__form_input"
+          />
+          <input
+            name="password"
+            type="password"
+            class="auth__form_input"
+          />
+        </form>
+        <div class="auth__buttons">
+          <button class="auth__buttons_signin">
+            Войти
+          </button>
+          <span class="auth__buttons_register"
+            >Нет аккаунта?</span
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./auth.js"></script>
+</html>

@@ -1,0 +1,10 @@
+@import "./colors.scss";
+
+@mixin appText($size, $color, $weight) {
+  color: $color;
+  font-family: Inter;
+  font-size: $size;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: normal;
+}
