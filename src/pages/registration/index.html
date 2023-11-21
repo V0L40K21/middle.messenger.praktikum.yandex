@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <style>
+      @import "./registration.scss";
+    </style>
+    <title>Регистрация</title>
+  </head>
+  <body>
+    <div class="registration">
+      <div class="registration__container">
+        <h1 class="registration__header">Регистрация</h1>
+        <form class="registration__form">
+          <input
+            name="first_name"
+            type="text"
+            class="registration__form_input"
+          />
+          <input
+            name="second_name"
+            type="text"
+            class="registration__form_input"
+          />
+          <input
+            name="login"
+            type="text"
+            class="registration__form_input"
+          />
+          <input
+            name="email"
+            type="email"
+            class="registration__form_input"
+          />
+          <input
+            name="phone"
+            type="tel"
+            class="registration__form_input"
+          />
+          <input
+            name="password"
+            type="password"
+            class="registration__form_input"
+          />
+          <input
+            name="passwordRepeat"
+            type="password"
+            class="registration__form_input"
+          />
+        </form>
+        <div class="registration__buttons">
+          <button class="registration__buttons_signin">
+            Создать аккаунт
+          </button>
+          <a
+            class="registration__buttons_register"
+            href="../auth/"
+            >Есть аккаунт?</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./registration.js"></script>
+</html>
