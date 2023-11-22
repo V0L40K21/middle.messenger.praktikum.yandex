@@ -1,13 +1,13 @@
 # ЯМессенджер
 
-### Первый спринт обучения на яндекс практикум.
+## Первый спринт обучения на яндекс практикум
 
-##### Ссылки:
+### Ссылки
 
 - [![Figma][figma-logo]][figma]
 - [![Netlify][netlify-logo]][netlify]
 
-##### Используемые технологии:
+### Используемые технологии
 
 - [![HTML][html-logo]][html]
 - [![SASS][sass-logo]][sass]
@@ -15,7 +15,7 @@
 - [![Handlebars][handlebars-logo]][handlebars]
 - [![Vite][vite-logo]][vite]
 
-##### Установка
+### Установка
 
 Для успешной работоспособности, убедитесь, что у вас установлен [![NPM Version][npm-logo]][npm]
 
@@ -23,7 +23,7 @@
 npm install
 ```
 
-##### Запуск
+### Запуск
 
 ```console
 npm run start
@@ -35,12 +35,15 @@ npm run start
 npm run dev
 ```
 
-##### Связаться с разработчиком
+Полсле успешного запуска перейдите в браузер [![browser][browser-logo]][browser]
+
+### Связаться с разработчиком
 
 [![LinkedIn][linkedin-logo]][linkedin][![Telegram][telegram-logo]][telegram][![gmail][gmail-logo]][gmail]
 
 [figma]: https://www.figma.com/file/8LCU6aCyyaQ676QLNFKRh7/yandex_sprint_1?type=design&node-id=0%3A1&mode=design&t=KGAVlHPT6NOzsHbD-1
 [figma-logo]: https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=black
+[netlify]: https://655e596e1c57176df88dea3a--jolly-alpaca-a2867e.netlify.app
 [netlify-logo]: https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7
 [handlebars]: https://handlebarsjs.com/
 [handlebars-logo]: https://img.shields.io/badge/Handlebars-23272f?style=for-the-badge&logo=handlebarsdotjs
@@ -62,3 +65,5 @@ npm run dev
 [gmail-logo]: https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
 [npm]: https://nodejs.org/
 [npm-logo]: https://badgen.net/npm/v/node/18.18.2
+[browser]: http://localhost:3000
+[browser-logo]: https://img.shields.io/badge/Safari-FF1B2D?style=for-the-badge&logo=Safari&logoColor=white
