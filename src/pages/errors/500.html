@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <style>
-      @import "./errors.scss";
-    </style>
-    <title>500</title>
-  </head>
-  <body>
-    <div class="error">
-      <h1 class="error__header">Ой!</h1>
-      <p class="error__desc">
-        Что-то пошло не так
-      </p>
-    </div>
-  </body>
-</html>
+{{#> main title="500" script="./errors.js"}}
+<div class="error">
+  <h1 class="error__header">Ой!</h1>
+  <p class="error__desc">
+    Что-то пошло не так
+  </p>
+</div>
+{{/main}}
