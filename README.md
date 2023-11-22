@@ -1,83 +1,64 @@
-### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
+# ЯМессенджер
 
-### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. 
-### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).
+### Первый спринт обучения на яндекс практикум.
 
-### Например, задания для проектной работы во втором спринте вы делаете в ветке sprint_2. Открываете из неё pull request в ветку main. Ссылку на этот pr добавляете в README.md в ветке main. После этого на платформе Практикума нажимаете «Проверить задание».
+##### Ссылки:
 
-### Также не забудьте проверить, что репозиторий публичный.
----
+- [![Figma][figma-logo]][figma]
+- [![Netlify][netlify-logo]][netlify]
 
+##### Используемые технологии:
 
-Даже законченный проект остаётся только заготовкой, пока им не начнут пользоваться. Но сначала пользователь должен понять, зачем ему пользоваться вашим кодом. В этом помогает файл README.
+- [![HTML][html-logo]][html]
+- [![SASS][sass-logo]][sass]
+- [![express][express-logo]][express]
+- [![Handlebars][handlebars-logo]][handlebars]
+- [![Vite][vite-logo]][vite]
 
-README — первое, что прочитает пользователь, когда попадёт в репозиторий на «Гитхабе». Хороший REAMDE отвечает на четыре вопроса:
+##### Установка
 
-- Готов ли проект к использованию?
-- В чём его польза?
-- Как установить?
-- Как применять?
+Для успешной работоспособности, убедитесь, что у вас установлен [![NPM Version][npm-logo]][npm]
 
-## Бейджи
+```console
+npm install
+```
 
-Быстро понять статус проекта помогают бейджи на «Гитхабе». Иногда разработчики ограничиваются парой бейджев, которые сообщат о статусе тестов кода:
+##### Запуск
 
-![Бэйджи](https://github.com/yandex-praktikum/mf.messenger.praktikum.yandex.images/blob/master/mf/b.png)
+```console
+npm run start
+```
 
-Если пользователь увидит ошибку в работе тестов, то поймёт: использовать текущую версию в важном проекте — не лучшая идея.
+Для запуска проекта в режиме разработки используйте
 
-Бейджи помогают похвастаться достижениями: насколько популярен проект, как много разработчиков создавало этот код. Через бейджи можно даже пригласить пользователя в чат:
+```console
+npm run dev
+```
 
-![Версии](https://github.com/yandex-praktikum/mf.messenger.praktikum.yandex.images/blob/master/mf/vers.png)
+##### Связаться с разработчиком
 
-В README **Webpack** строка бейджев подробно рассказывает о покрытии кода тестами. Когда проект протестирован, это вызывает доверие пользователя. Последний бейдж приглашает присоединиться к разработке. 
+[![LinkedIn][linkedin-logo]][linkedin][![Telegram][telegram-logo]][telegram][![gmail][gmail-logo]][gmail]
 
-Другая строка убедит пользователя в стабильности инфраструктуры и популярности проекта. Последний бейдж зовёт в чат проекта.
-
-## Описание
-
-Краткое опишите, какую задачу решает проект. Пользователь не верит обещаниям и не готов читать «полотна» текста. Поэтому в описании достаточно нескольких строк:
-
-![Описание](https://github.com/yandex-praktikum/mf.messenger.praktikum.yandex.images/blob/master/mf/desc.png)
-
-Авторы **React** дробят описание на абзацы и списки — так проще пробежаться глазами по тексту и найти ключевую информацию.
-
-Если у проекта есть сайт, добавьте ссылку в заголовок.
-
-## Установка
-
-Лучше всего пользователя убеждает собственный опыт. Чем быстрее он начнёт пользоваться проектом, тем раньше почувствует пользу. Для этого помогите ему установить приложение: напишите краткую пошаговую инструкцию.
-
-Если проект предназначен для разработчиков, добавьте информацию об установке тестовых версий. Например:
-
-- `npm install` — установка стабильной версии,
-- `npm start` — запуск версии для разработчика,
-- `npm run build:prod` — сборка стабильной версии.
-
-## **Примеры использования**
-
-Хорошо, если сразу после установки пользователь сможет решить свои задачи без изучения проекта. Это особенно верно, если ваш пользователь — не профессиональный разработчик. Но даже профессионал поймёт вас лучше, если показать примеры использования:
-
-![Ссылки](https://github.com/yandex-praktikum/mf.messenger.praktikum.yandex.images/blob/master/mf/link.png)
-
-Для более подробных инструкции добавьте новые разделы или ссылки:
-
-- на документацию,
-- вики проекта,
-- описание API.
-
-В учебном проекте будут полезен раздел с описанием стиля кода и правилами разработки: как работать с ветками, пул-реквестами и релизами.
-
-### **Команда**
-
-Если вы работаете в команде, укажите основных участников: им будет приятно, а новые разработчики охотнее присоединятся к проекту. «Гитхаб» — не просто инструмент, это социальная сеть разработчиков.
-
-![Команда](https://github.com/yandex-praktikum/mf.messenger.praktikum.yandex.images/blob/master/mf/team.png)
-
-### **Примеры README**
-
-- «[Реакт](https://github.com/facebook/react)»,
-- «[Эхо](https://github.com/labstack/echo)»,
-- «[Вебпак](https://github.com/webpack/webpack)»,
-- «[ТДенгине](https://github.com/taosdata/TDengine)»,
-- «[Соул-хантинг](https://github.com/vladpereskokov/soul-hunting/)».
+[figma]: https://www.figma.com/file/8LCU6aCyyaQ676QLNFKRh7/yandex_sprint_1?type=design&node-id=0%3A1&mode=design&t=KGAVlHPT6NOzsHbD-1
+[figma-logo]: https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=black
+[netlify-logo]: https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7
+[handlebars]: https://handlebarsjs.com/
+[handlebars-logo]: https://img.shields.io/badge/Handlebars-23272f?style=for-the-badge&logo=handlebarsdotjs
+[vite]: https://vitejs.dev/
+[vite-logo]: https://img.shields.io/badge/Vite-23272f?style=for-the-badge&logo=vite
+[html]: https://ru.wikipedia.org/wiki/HTML
+[html-logo]: https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white
+[sass]: https://sass-lang.com
+[sass-logo]: https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white
+[express]: https://expressjs.com
+[express-logo]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
+[nodejs]: https://nodejs.org/en
+[nodejs-logo]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
+[linkedin]: https://www.linkedin.com/in/vitaliy-kamenchshikov-7826841a1/
+[linkedin-logo]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
+[telegram]: https://t.me/V0L40K_21
+[telegram-logo]: https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white
+[gmail]: mailto:vol4ok94@gmail.com
+[gmail-logo]: https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
+[npm]: https://nodejs.org/
+[npm-logo]: https://badgen.net/npm/v/node/18.18.2
