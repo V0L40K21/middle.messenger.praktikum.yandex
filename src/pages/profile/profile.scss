@@ -1,0 +1,61 @@
+@import "../../styles/main.scss";
+
+.profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  &__backbtn {
+    @include appText(20px, $mainBlue, 400);
+    position: absolute;
+    left: 0;
+    text-decoration: none;
+  }
+  &__avatarWrapper {
+    &_img {
+      width: 200px;
+      height: 200px;
+      border-radius: 100%;
+      background-color: $gray;
+    }
+    &_name {
+      @include appText(36px, $mainBlue, 700);
+      text-align: center;
+    }
+  }
+  &__lines {
+    margin-bottom: 100px;
+    &__lineWrapper {
+      display: flex;
+      width: 40vw;
+      justify-content: space-between;
+      border-bottom: 1px solid $mainBlue;
+      padding: 15px 30px;
+      &_key {
+        @include appText(20px, $darkGray, 400);
+        margin: 0;
+      }
+      &_value {
+        @include appText(20px, $mainBlue, 700);
+        margin: 0;
+      }
+    }
+  }
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_edit {
+      @include appText(20px, $mainBlue, 400);
+      margin-bottom: 12px;
+    }
+    &_pass {
+      @include appText(20px, $mainBlue, 400);
+      margin-bottom: 12px;
+    }
+    &_logout {
+      @include appText(20px, $red, 400);
+    }
+  }
+}

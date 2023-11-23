@@ -1,0 +1,21 @@
+@import "../../styles/main.scss";
+
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  &__header {
+    @include appText(40px, $mainBlue, 400);
+  }
+  &__desc {
+    @include appText(20px, $black, 400);
+  }
+  &__link {
+    @include appText(20px, $mainBlue, 400);
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 15px;
+  }
+}
