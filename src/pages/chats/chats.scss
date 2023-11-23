@@ -1,5 +1,4 @@
-@import "../../styles/colors.scss";
-@import "../../styles/text.scss";
+@import "../../styles/main.scss";
 
 .chats {
   display: flex;
@@ -22,11 +21,12 @@
       &__form {
         width: 100%;
         &__input {
-          width: 88%;
           @include appText(20px, $black, 400);
+          box-sizing: border-box;
           border-radius: 15px;
           border: 1px solid $mainBlue;
           padding: 8px 18px;
+          width: 100%;
         }
       }
     }

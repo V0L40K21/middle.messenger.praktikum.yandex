@@ -10,30 +10,7 @@
 		<p class="profile__avatarWrapper_name">Name</p>
 	</div>
 	<div class="profile__lines">
-		<div class="profile__lines__lineWrapper">
-			<p class="profile__lines__lineWrapper_key">Почта</p>
-			<p class="profile__lines__lineWrapper_value">фыв</p>
-		</div>
-		<div class="profile__lines__lineWrapper">
-			<p class="profile__lines__lineWrapper_key">Логин</p>
-			<p class="profile__lines__lineWrapper_value">фыв</p>
-		</div>
-		<div class="profile__lines__lineWrapper">
-			<p class="profile__lines__lineWrapper_key">Имя</p>
-			<p class="profile__lines__lineWrapper_value">фыв</p>
-		</div>
-		<div class="profile__lines__lineWrapper">
-			<p class="profile__lines__lineWrapper_key">Фамилия</p>
-			<p class="profile__lines__lineWrapper_value">фыв</p>
-		</div>
-		<div class="profile__lines__lineWrapper">
-			<p class="profile__lines__lineWrapper_key">Имя в чате</p>
-			<p class="profile__lines__lineWrapper_value">фыв</p>
-		</div>
-		<div class="profile__lines__lineWrapper">
-			<p class="profile__lines__lineWrapper_key">Телефон</p>
-			<p class="profile__lines__lineWrapper_value">фыв</p>
-		</div>
+		{{#each profile.data}} {{> profile.listItem key=@key value=this}} {{/each}}
 	</div>
 	<div class="profile__buttons">
 		<a
