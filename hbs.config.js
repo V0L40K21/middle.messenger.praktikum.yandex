@@ -1,13 +1,9 @@
 import handlebars from 'vite-plugin-handlebars'
 import {resolve} from 'node:path'
 
-const context = {
-	main: {
-		test: 'abc'
-	}
-}
+import {context} from './hbs.context'
 
 export const handlebarsPlugin = handlebars({
-	partialDirectory: resolve('src/pages'),
+	partialDirectory: resolve('src/components'),
 	context
 })

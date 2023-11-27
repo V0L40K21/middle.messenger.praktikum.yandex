@@ -10,6 +10,7 @@ const rollupOptions = {
 		auth: resolve('./src/pages/auth/index.html'),
 		registration: resolve('./src/pages/registration/index.html'),
 		chats: resolve('./src/pages/chats/index.html'),
+		profile: resolve('./src/pages/profile/index.html'),
 		404: resolve('./src/pages/errors/404.html'),
 		500: resolve('./src/pages/errors/500.html')
 	}
