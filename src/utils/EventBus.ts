@@ -14,7 +14,7 @@ export class EventBus {
 		}
 
 		this.listeners[event] = this.listeners[event].filter(
-			listener => listener !== callback
+			(listener) => listener !== callback
 		)
 	}
 
@@ -23,8 +23,8 @@ export class EventBus {
 			throw new Error(`События "${event}" не существует`)
 		}
 
-		this.listeners[event].forEach(listener => {
-			//@ts-ignore
+		this.listeners[event].forEach((listener) => {
+			// @ts-ignore
 			listener(...args)
 		})
 	}

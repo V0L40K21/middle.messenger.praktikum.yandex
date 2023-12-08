@@ -31,6 +31,7 @@ export class Auth extends Block {
 			}
 		})
 	}
+
 	render() {
 		return this.compile(template, this.props)
 	}

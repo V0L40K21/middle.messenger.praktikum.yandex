@@ -1,5 +1,6 @@
 import {resolve} from 'path'
 import {defineConfig} from 'vite'
+import eslint from 'vite-plugin-eslint'
 
 import {handlebarsPlugin} from './hbs.config'
 import handlebars from './vite.plugin.precompile'
@@ -9,5 +10,5 @@ export default defineConfig({
 	build: {
 		outDir: resolve(__dirname, 'dist')
 	},
-	plugins: [handlebarsPlugin, handlebars()]
+	plugins: [handlebarsPlugin, handlebars(), eslint()]
 })
