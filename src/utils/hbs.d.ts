@@ -1,5 +1,5 @@
 declare module '*.hbs' {
-	import {TemplateDelegate} from 'handlebars'
+	import {TemplateDelegate} from 'handlebars/runtime'
 
 	declare const template: TemplateDelegate
 

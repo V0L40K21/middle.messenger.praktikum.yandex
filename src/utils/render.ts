@@ -1,20 +1,19 @@
 import {Auth} from '../pages/auth/auth'
+import {Registration} from '../pages/registration/registration'
 
 const ROUTES = {
-	auth: Auth
-	// 'login': LoginPage,
+	auth: Auth,
+	registration: Registration
 }
 
 export function render(name: keyof typeof ROUTES) {
-	const root = document.querySelector('#app')
+	const root = document.querySelector('#app')!
 
-	if (root) {
-		root.innerHTML = ''
+	root.innerHTML = ''
 
-		const Page = ROUTES[name]
-		const page = new Page()
+	const Page = ROUTES[name]
+	const page = new Page()
 
-		root.append(page.getContent() ?? '')
-		page.dispatchComponentDidMount()
-	}
+	root.append(page.getContent()!)
+	page.dispatchComponentDidMount()
 }

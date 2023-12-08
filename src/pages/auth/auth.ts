@@ -1,23 +1,34 @@
 import Block from '../../utils/Block'
-import template from './index.hbs'
+import {render} from '../../utils/render'
 import './auth.scss'
+import template from './index.hbs'
 
 export class Auth extends Block {
 	constructor() {
 		super({
-			class: 'auth__form_input',
 			inputs: [
 				{
 					name: 'login',
 					placeholder: 'Логин',
-					type: 'text'
+					type: 'text',
+					class: 'auth__form_input'
 				},
 				{
 					name: 'password',
 					placeholder: 'Пароль',
-					type: 'password'
+					type: 'password',
+					class: 'auth__form_input'
 				}
-			]
+			],
+			button: {
+				class: 'auth__buttons_signin',
+				text: 'Войти'
+			},
+			link: {
+				class: 'auth__buttons_register',
+				text: 'Нет аккаунта?',
+				onClick: () => render('registration')
+			}
 		})
 	}
 	render() {

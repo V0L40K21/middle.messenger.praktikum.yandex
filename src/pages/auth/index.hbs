@@ -3,14 +3,22 @@
 		<h1 class='auth__header'>Вход</h1>
 		<form class='auth__form'>
 			<div class='auth__form__inputs'>
-				{{{Input name='name' type='text' placeholder='Name'}}}
 				{{#each inputs}}
-					{{{Input name=this.name}}}
+					{{{Input
+						name=this.name
+						class=this.class
+						placeholder=this.placeholder
+						type=this.type
+					}}}
 				{{/each}}
 			</div>
 			<div class='auth__buttons'>
-				<button class='auth__buttons_signin'>Войти</button>
-				<a class='auth__buttons_register' href='../registration/'>Нет аккаунта?</a>
+				{{#with button}}
+					{{{Button class=class text=text onClick=this.onClick}}}
+				{{/with}}
+				{{#with link}}
+					{{{Link class=class text=text onClick=this.onClick}}}
+				{{/with}}
 			</div>
 		</form>
 	</div>

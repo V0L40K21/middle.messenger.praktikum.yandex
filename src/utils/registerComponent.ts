@@ -1,10 +1,8 @@
-import Handlebars, {HelperOptions} from 'handlebars'
+import Handlebars, {HelperOptions} from 'handlebars/runtime'
 
 import Block from './Block'
 
 export function registerComponent(name: string, Component: typeof Block) {
-	console.log('name :', name)
-	console.log('Component :', Component)
 	if (name in Handlebars.helpers) {
 		throw `The ${name} component is already registered!`
 	}
@@ -14,7 +12,6 @@ export function registerComponent(name: string, Component: typeof Block) {
 		function (this: unknown, {hash, data, fn}: HelperOptions) {
 			const component = new Component(hash)
 			const dataAttribute = `data-id="${component.id}"`
-			console.log('start', dataAttribute, component)
 
 			if ('ref' in hash) {
 				;(data.root.__refs = data.root.__refs || {})[hash.ref] = component
@@ -37,7 +34,6 @@ export function registerComponent(name: string, Component: typeof Block) {
 
 			const contents = fn ? fn(this) : ''
 
-			console.log('done', dataAttribute, contents)
 			return `<div ${dataAttribute}>${contents}</div>`
 		}
 	)
