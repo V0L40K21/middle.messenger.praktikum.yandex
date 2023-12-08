@@ -1,19 +1,21 @@
-{{#> main title="Регистрация" script="./registration.js"}}
+{{#> main title="Регистрация" script="./registration.ts"}}
 <div class="registration">
-	<div class="registration__container">
-		<h1 class="registration__header">Регистрация</h1>
-		<form class="registration__form">
-			{{#each registration.inputs}} {{> input class="registration__form_input"}}
-			{{/each}}
-			<div class="registration__buttons">
-				<button class="registration__buttons_signin">Создать аккаунт</button>
-				<a
-					class="registration__buttons_register"
-					href="../auth/"
-					>Есть аккаунт?</a
-				>
-			</div>
-		</form>
-	</div>
+  <div class="registration__container">
+    <h1 class="registration__header">Регистрация</h1>
+    <form class="registration__form">
+      {{#each registration.inputs}} {{> input
+      class="registration__form_input"}} {{/each}}
+      <div class="registration__buttons">
+        <button class="registration__buttons_signin">
+          Создать аккаунт
+        </button>
+        <a
+          class="registration__buttons_register"
+          href="../auth/"
+          >Есть аккаунт?</a
+        >
+      </div>
+    </form>
+  </div>
 </div>
 {{/main}}

@@ -1,10 +1,11 @@
 import Handlebars from 'handlebars'
+import {PluginOption} from 'vite'
 
-export default function handlebars() {
+export default function handlebars(): PluginOption {
 	const fileRegexp = /\.hbs$|\.handlebars$/
 	return {
 		name: 'vite.plugin.precompile',
-		transform(src, id) {
+		transform(src: string, id: string) {
 			if (!fileRegexp.test(id)) {
 				return
 			}

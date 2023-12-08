@@ -1,33 +1,24 @@
-{{#> main title="Профиль" script="./profile.js"}}
+{{#> main title="Профиль" script="./profile.ts"}}
 <div class="profile">
-	<a
-		href="../chats/"
-		class="profile__backbtn"
-		>Назад</a
-	>
-	<div class="profile__avatarWrapper">
-		<div class="profile__avatarWrapper_img"></div>
-		<p class="profile__avatarWrapper_name">Name</p>
-	</div>
-	<div class="profile__lines">
-		{{#each profile.data}} {{> profile.listItem key=@key value=this}} {{/each}}
-	</div>
-	<div class="profile__buttons">
-		<a
-			class="profile__buttons_edit"
-			href="../chats/"
-			>Изменить данные</a
-		>
-		<a
-			class="profile__buttons_pass"
-			href="../chats/"
-			>Изменить пароль</a
-		>
-		<a
-			class="profile__buttons_logout"
-			href="../chats/"
-			>Выйти</a
-		>
-	</div>
+  <a href="../chats/" class="profile__backbtn">Назад</a>
+  <div class="profile__avatarWrapper">
+    <div class="profile__avatarWrapper_img"></div>
+    <p class="profile__avatarWrapper_name">Name</p>
+  </div>
+  <div class="profile__lines">
+    {{#each profile.data}} {{> profile.listItem key=@key
+    value=this}} {{/each}}
+  </div>
+  <div class="profile__buttons">
+    <a class="profile__buttons_edit" href="../chats/"
+      >Изменить данные</a
+    >
+    <a class="profile__buttons_pass" href="../chats/"
+      >Изменить пароль</a
+    >
+    <a class="profile__buttons_logout" href="../chats/"
+      >Выйти</a
+    >
+  </div>
 </div>
 {{/main}}

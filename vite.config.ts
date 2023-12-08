@@ -19,8 +19,8 @@ const rollupOptions = {
 export default defineConfig({
 	root: resolve(__dirname, 'src'),
 	build: {
-		outDir: resolve(__dirname, 'dist'),
-		rollupOptions
+		outDir: resolve(__dirname, 'dist')
+		// rollupOptions
 	},
 	plugins: [handlebarsPlugin, handlebars()]
 })
