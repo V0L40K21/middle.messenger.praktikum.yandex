@@ -1,6 +1,6 @@
 # ЯМессенджер
 
-## Первый спринт обучения на яндекс практикум
+## Второй спринт обучения на яндекс практикум
 
 ### Ссылки
 
@@ -14,6 +14,10 @@
 - [![express][express-logo]][express]
 - [![Handlebars][handlebars-logo]][handlebars]
 - [![Vite][vite-logo]][vite]
+- [![Typescript][typescript-logo]][typescript]
+- [![ESLint][eslint-logo]][eslint]
+- [![Prettier][prettier-logo]][prettier]
+- [![Stylelint][stylelint-logo]][stylelint]
 
 ### Установка
 
@@ -21,6 +25,15 @@
 
 ```console
 npm install
+```
+
+### Перед запуском
+
+Чтобы убедиться, что все зависимости проекта корректно встали, можно запустить ESLint и собрать проект
+
+```bash
+npm run lint-fix
+npm run build
 ```
 
 ### Запуск
@@ -49,6 +62,8 @@ npm run dev
 [handlebars-logo]: https://img.shields.io/badge/Handlebars-23272f?style=for-the-badge&logo=handlebarsdotjs
 [vite]: https://vitejs.dev/
 [vite-logo]: https://img.shields.io/badge/Vite-23272f?style=for-the-badge&logo=vite
+[typescript]: https://www.typescriptlang.org
+[typescript-logo]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
 [html]: https://ru.wikipedia.org/wiki/HTML
 [html-logo]: https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white
 [sass]: https://sass-lang.com
@@ -67,3 +82,9 @@ npm run dev
 [npm-logo]: https://badgen.net/npm/v/node/18.18.2
 [browser]: http://localhost:3000
 [browser-logo]: https://img.shields.io/badge/Safari-FF1B2D?style=for-the-badge&logo=Safari&logoColor=white
+[eslint]: https://eslint.org
+[eslint-logo]: https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white
+[prettier]: https://prettier.io
+[prettier-logo]: https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E
+[stylelint]: https://stylelint.io
+[stylelint-logo]: https://img.shields.io/badge/stylelint-000?style=for-the-badge&logo=stylelint&logoColor=white
