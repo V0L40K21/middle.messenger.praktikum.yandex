@@ -31,6 +31,12 @@
       border-radius: 15px;
       border: 1px solid $mainBlue;
       padding: 8px 18px;
+      &__error {
+        border: 1px solid $red;
+      }
+      &__errorLabel {
+        color: $red;
+      }
     }
   }
   &__buttons {

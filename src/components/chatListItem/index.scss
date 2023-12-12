@@ -1,0 +1,51 @@
+@import "../../styles/main.scss";
+
+.chatListItem {
+  display: flex;
+  border-top: 1px solid $darkGray;
+  margin: 0 10px;
+  padding: 12px 0;
+  cursor: pointer;
+  &_left {
+    display: flex;
+    justify-content: space-evenly;
+    &__photo {
+      border-radius: 100px;
+      width: 50px;
+      height: 50px;
+      background-color: $darkGray;
+    }
+  }
+  &_center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex: 1;
+    padding: 0 10px;
+    &__name {
+      @include appText(13px, $black, 600);
+    }
+    &__message {
+      @include appText(12px, $darkGray, 400);
+    }
+  }
+  &_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    &__time {
+      @include appText(9px, $darkGray, 400);
+    }
+    &__count {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background-color: $mainBlue;
+      border-radius: 100px;
+      @include appText(11px, $white, 400);
+    }
+  }
+}

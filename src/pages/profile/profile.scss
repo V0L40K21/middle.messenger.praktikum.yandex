@@ -11,6 +11,7 @@
     position: absolute;
     left: 0;
     text-decoration: none;
+    cursor: pointer;
   }
   &__avatarWrapper {
     &_img {
@@ -49,13 +50,16 @@
     &_edit {
       @include appText(20px, $mainBlue, 400);
       margin-bottom: 12px;
+      cursor: pointer;
     }
     &_pass {
       @include appText(20px, $mainBlue, 400);
       margin-bottom: 12px;
+      cursor: pointer;
     }
     &_logout {
       @include appText(20px, $red, 400);
+      cursor: pointer;
     }
   }
 }
