@@ -64,7 +64,7 @@ export class Auth extends Block {
 					).length
 					if (!isValid) {
 						console.log('data :', JSON.stringify(data))
-						render('registration')
+						render('chats')
 					}
 				}
 			},

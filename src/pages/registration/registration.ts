@@ -73,11 +73,11 @@ export class Registration extends Block {
 						}
 					)
 					const isValid = document.getElementsByClassName(
-						'auth__form_input__errorLabel'
+						'registration__form_input__errorLabel'
 					).length
 					if (!isValid) {
 						console.log('data :', JSON.stringify(data))
-						render('registration')
+						render('chats')
 					}
 				}
 			},

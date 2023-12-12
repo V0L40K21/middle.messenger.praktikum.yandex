@@ -17,6 +17,7 @@
         @include appText(20px, $mainBlue, 400);
         margin-bottom: 55px;
         text-decoration: none;
+        cursor: pointer;
       }
       &__form {
         width: 100%;

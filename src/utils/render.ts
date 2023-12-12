@@ -1,9 +1,15 @@
 import {Auth} from '../pages/auth/auth'
+import {Chats} from '../pages/chats/chats'
+import {E404} from '../pages/errors/404'
+import {E500} from '../pages/errors/500'
 import {Registration} from '../pages/registration/registration'
 
 const ROUTES = {
 	auth: Auth,
-	registration: Registration
+	registration: Registration,
+	chats: Chats,
+	e404: E404,
+	e500: E500
 }
 
 export function render(name: keyof typeof ROUTES) {
