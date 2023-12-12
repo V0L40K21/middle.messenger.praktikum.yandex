@@ -4,17 +4,26 @@
 		<form class='registration__form'>
 			{{#each inputs}}
 				{{{Input
-					class='registration__form_input'
+					id=this.name
 					name=this.name
+					onBlur=this.onBlur
+					errorMessage=this.errorMessage
+					class='registration__form_input input'
 					placeholder=this.placeholder
 					type=this.type
 				}}}
 			{{/each}}
 			<div class='registration__buttons'>
-				<button class='registration__buttons_signin'>
-					Создать аккаунт
-				</button>
-				<a class='registration__buttons_register' href='../auth/'>Есть аккаунт?</a>
+				{{{Button
+					text='Создать аккаунт'
+					class='registration__buttons_signin'
+					type='submit'
+				}}}
+				{{{Link
+					class='registration__buttons_register'
+					text='Есть аккаунт?'
+					onClick=this.onClick
+				}}}
 			</div>
 		</form>
 	</div>

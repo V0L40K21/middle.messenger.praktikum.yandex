@@ -6,7 +6,7 @@ import template from './index.hbs'
 
 const validate = (input: HTMLInputElement) => {
 	const {value, name} = input
-	const isValid = Validator.validate(
+	const {isValid, errorMessage} = Validator.validate(
 		name === 'login' ? 'login' : 'password',
 		value
 	)
@@ -15,7 +15,7 @@ const validate = (input: HTMLInputElement) => {
 	errorLabel.className = 'auth__form_input__errorLabel'
 	errorLabel.id = `auth__form_input__errorLabel_${name}`
 	errorLabel.htmlFor = name
-	errorLabel.textContent = input.getAttribute('errorMessage')
+	errorLabel.textContent = errorMessage
 	if (!isValid) {
 		input.classList.add('auth__form_input__error')
 		if (!document.getElementById(`auth__form_input__errorLabel_${name}`)) {
@@ -52,8 +52,10 @@ export class Auth extends Block {
 			events: {
 				submit: (event: Event) => {
 					event.preventDefault()
+					const data: {[key: string]: string} = {}
 					Array.from(document.getElementsByTagName('input')).forEach(
 						(input) => {
+							data[input.name] = input.value
 							validate(input)
 						}
 					)
@@ -61,6 +63,7 @@ export class Auth extends Block {
 						'auth__form_input__errorLabel'
 					).length
 					if (!isValid) {
+						console.log('data :', JSON.stringify(data))
 						render('registration')
 					}
 				}
@@ -70,16 +73,12 @@ export class Auth extends Block {
 					name: 'login',
 					placeholder: 'Логин',
 					type: 'text',
-					errorMessage:
-						'Поле должно содержать 3 - 20 символов и состоять из латинских букв и цифр',
 					onBlur: addBlurListeners
 				},
 				{
 					name: 'password',
 					placeholder: 'Пароль',
 					type: 'password',
-					errorMessage:
-						'Поле должно содержать 8 - 40 символов. Иметь одну заглавную букву и одну цифру.',
 					onBlur: addBlurListeners
 				}
 			]
