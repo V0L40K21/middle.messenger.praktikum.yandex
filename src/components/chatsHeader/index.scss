@@ -1,0 +1,30 @@
+@import "../../styles/main.scss";
+
+.chatHeader {
+  display: flex;
+  border-bottom: 1px solid $darkGray;
+  padding: 10px 0;
+  align-items: center;
+  &_photo {
+    width: 34px;
+    height: 34px;
+    background-color: $darkGray;
+    border-radius: 100px;
+  }
+  &_name {
+    flex: 1;
+    margin: 0 10px;
+    @include appText(18px, $black, 600);
+  }
+  &_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: $mainBlue;
+    border-radius: 100px;
+    cursor: pointer;
+    @include appText(18px, $white, 600);
+  }
+}

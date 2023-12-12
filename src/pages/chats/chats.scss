@@ -15,7 +15,7 @@
       padding: 15px;
       &__link {
         @include appText(20px, $mainBlue, 400);
-        margin-bottom: 55px;
+        margin-bottom: 15px;
         text-decoration: none;
         cursor: pointer;
       }
@@ -36,9 +36,9 @@
     }
   }
   &__rightSide {
-    flex: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    flex: 1;
+    margin: 0 20px;
   }
 }

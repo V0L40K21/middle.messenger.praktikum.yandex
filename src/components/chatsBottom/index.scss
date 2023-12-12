@@ -1,0 +1,44 @@
+@import "../../styles/main.scss";
+
+.chatBottom {
+  display: flex;
+  border-top: 1px solid $darkGray;
+  padding: 10px 0;
+  align-items: center;
+  &_add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+  }
+  &_inputWrapper {
+    flex: 1;
+    margin: 0 10px;
+    &_input {
+      @include appText(20px, $black, 400);
+      border-radius: 15px;
+      border: 1px solid $mainBlue;
+      padding: 8px 18px;
+      width: 100%;
+      box-sizing: border-box;
+      &__error {
+        border: 1px solid $red;
+      }
+      &__errorLabel {
+        color: $red;
+      }
+    }
+  }
+  &_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    background-color: $mainBlue;
+    border-radius: 100px;
+    cursor: pointer;
+    @include appText(18px, $white, 600);
+  }
+}

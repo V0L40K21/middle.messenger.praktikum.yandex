@@ -7,14 +7,27 @@
 				onClick=this.onClick
 			}}}
 			<form action='' class='chats__leftSide__menu__form'>
-				<input type='text' class='chats__leftSide__menu__form__input' />
+				{{{Input
+					class='chats__leftSide__menu__form__input'
+					placeholder='Поиск'
+					name='search'
+				}}}
 			</form>
 		</div>
-		<div class='chats__leftSide__list'></div>
+		<div class='chats__leftSide__list'>
+			{{#each this.dialogs}}
+				{{{ChatListItem
+					name=this.name
+					message=this.message
+					time=this.time
+					count=this.count
+				}}}
+			{{/each}}
+		</div>
 	</div>
 	<div class='chats__rightSide'>
-		<p class='chats__rightSide__text'>
-			Данная страница находится на стадии разработки
-		</p>
+		{{{ChatsHeader}}}
+		<div style='flex: 1;'></div>
+		{{{ChatsBottom}}}
 	</div>
 </div>

@@ -6,7 +6,20 @@ import template from './index.hbs'
 export class Chats extends Block {
 	constructor() {
 		super({
-			onClick: () => render('auth')
+			onClick: () => render('profile'),
+			dialogs: [
+				{
+					name: 'Hukumka',
+					message: 'Hello',
+					time: '18:20',
+					count: 1
+				},
+				{
+					name: 'Andrey',
+					message: 'Hello world',
+					time: '18:22'
+				}
+			]
 		})
 	}
 
