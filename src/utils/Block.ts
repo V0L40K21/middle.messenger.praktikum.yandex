@@ -1,6 +1,5 @@
 import {nanoid} from 'nanoid'
-
-import {EventBus} from './eventBus'
+import {EventBus} from './EventBus'
 
 class Block {
 	static EVENTS = {
@@ -67,7 +66,7 @@ class Block {
 	_addEvents() {
 		const {events = {}} = this.props as {events: Record<string, () => void>}
 
-		Object.keys(events).forEach(eventName => {
+		Object.keys(events).forEach((eventName) => {
 			this._element?.addEventListener(eventName, events[eventName])
 		})
 	}
@@ -96,7 +95,7 @@ class Block {
 	public dispatchComponentDidMount() {
 		this.eventBus().emit(Block.EVENTS.FLOW_CDM)
 
-		Object.values(this.children).forEach(child =>
+		Object.values(this.children).forEach((child) =>
 			child.dispatchComponentDidMount()
 		)
 	}
