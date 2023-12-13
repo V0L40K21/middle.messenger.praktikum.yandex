@@ -7,7 +7,7 @@ export default function handlebars(): PluginOption {
 		name: 'vite.plugin.precompile',
 		transform(src: string, id: string) {
 			if (!fileRegexp.test(id)) {
-				return
+				return null
 			}
 			const code = `
 				import Handlebars from 'handlebars/runtime'

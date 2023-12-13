@@ -8,6 +8,6 @@
   "semi": false,
   "singleQuote": true,
   "useTabs": true,
-  "printWidth": 80,
+  "printWidth": 90,
   "endOfLine": "auto"
 }
