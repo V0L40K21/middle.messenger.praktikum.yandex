@@ -21,7 +21,7 @@ class Block {
 
 	private _element: HTMLElement | null = null
 
-	private _meta: {props: any}
+	// private _meta: {props: any}
 
 	/** JSDoc
 	 * @param {string} tagName
@@ -34,9 +34,9 @@ class Block {
 
 		const {props, children} = this._getChildrenAndProps(propsWithChildren)
 
-		this._meta = {
-			props
-		}
+		// this._meta = {
+		// 	props
+		// }
 
 		this.children = children
 		this.props = this._makePropsProxy(props)
@@ -95,9 +95,7 @@ class Block {
 	public dispatchComponentDidMount() {
 		this.eventBus().emit(Block.EVENTS.FLOW_CDM)
 
-		Object.values(this.children).forEach((child) =>
-			child.dispatchComponentDidMount()
-		)
+		Object.values(this.children).forEach((child) => child.dispatchComponentDidMount())
 	}
 
 	private _componentDidUpdate(oldProps: any, newProps: any) {
@@ -107,6 +105,8 @@ class Block {
 	}
 
 	protected componentDidUpdate(oldProps: any, newProps: any) {
+		console.log('newProps :', newProps)
+		console.log('oldProps :', oldProps)
 		return true
 	}
 
