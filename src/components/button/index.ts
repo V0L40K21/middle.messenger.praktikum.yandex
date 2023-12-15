@@ -5,7 +5,7 @@ interface IInputProps {
 	text: string
 	class: string
 	type: 'button' | 'submit'
-	onClick?: () => void
+	onClick: () => void
 	events: {
 		click: () => void
 	}

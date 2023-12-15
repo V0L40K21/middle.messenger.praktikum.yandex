@@ -150,17 +150,17 @@ class Block {
 		return this.element
 	}
 
-	private _makePropsProxy(props: Record<string, any>) {
+	private _makePropsProxy(props: IProps) {
 		const self = this
 		return new Proxy(props, {
-			get(target: Record<string, any>, prop: string) {
+			get(target: IProps, prop: string) {
 				const value = target[prop]
 				return typeof value === 'function' ? value.bind(target) : value
 			},
-			set(target: Record<string, any>, prop: string, value) {
+			set(target: IProps, prop: string, value) {
 				const oldTarget = {...target}
 				target[prop] = value
-				self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target)
+				self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target as IProps)
 				return true
 			},
 			deleteProperty() {

@@ -4,7 +4,7 @@ import template from './Link.hbs'
 interface IInputProps {
 	text: string
 	class: string
-	onClick?: () => void
+	onClick: () => void
 	events: {
 		click: () => void
 	}
