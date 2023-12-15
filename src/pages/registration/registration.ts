@@ -31,26 +31,13 @@ const validate = (input: HTMLInputElement) => {
 	errorLabel.textContent = errorMessage
 	if (!isValid) {
 		input.classList.add('registration__form_input__error')
-		if (
-			!document.getElementById(`registration__form_input__errorLabel_${name}`)
-		) {
+		if (!document.getElementById(`registration__form_input__errorLabel_${name}`)) {
 			input.after(errorLabel)
 		}
 	} else {
 		input.classList.remove('registration__form_input__error')
-		document
-			.getElementById(`registration__form_input__errorLabel_${name}`)
-			?.remove()
+		document.getElementById(`registration__form_input__errorLabel_${name}`)?.remove()
 	}
-}
-
-const addBlurListeners = () => {
-	const elements = document.getElementsByClassName('input')
-	Array.from(elements).forEach((element) => {
-		element.addEventListener('blur', () => {
-			validate(element as HTMLInputElement)
-		})
-	})
 }
 
 export class Registration extends Block {
@@ -66,12 +53,10 @@ export class Registration extends Block {
 				submit: (event: Event) => {
 					event.preventDefault()
 					const data: {[key: string]: string} = {}
-					Array.from(document.getElementsByTagName('input')).forEach(
-						(input) => {
-							data[input.name] = input.value
-							validate(input)
-						}
-					)
+					Array.from(document.getElementsByTagName('input')).forEach((input) => {
+						data[input.name] = input.value
+						validate(input)
+					})
 					const isValid = document.getElementsByClassName(
 						'registration__form_input__errorLabel'
 					).length
@@ -86,43 +71,43 @@ export class Registration extends Block {
 					name: 'first_name',
 					placeholder: 'Имя',
 					type: 'text',
-					onBlur: addBlurListeners
+					onBlur: ({target}: Event) => validate(target as HTMLInputElement)
 				},
 				{
 					name: 'second_name',
 					placeholder: 'Фамилия',
 					type: 'text',
-					onBlur: addBlurListeners
+					onBlur: ({target}: Event) => validate(target as HTMLInputElement)
 				},
 				{
 					name: 'login',
 					placeholder: 'Логин',
 					type: 'text',
-					onBlur: addBlurListeners
+					onBlur: ({target}: Event) => validate(target as HTMLInputElement)
 				},
 				{
 					name: 'email',
 					placeholder: 'E-mail',
 					type: 'email',
-					onBlur: addBlurListeners
+					onBlur: ({target}: Event) => validate(target as HTMLInputElement)
 				},
 				{
 					name: 'phone',
 					placeholder: 'Телефон',
 					type: 'tel',
-					onBlur: addBlurListeners
+					onBlur: ({target}: Event) => validate(target as HTMLInputElement)
 				},
 				{
 					name: 'password',
 					placeholder: 'Пароль',
 					type: 'password',
-					onBlur: addBlurListeners
+					onBlur: ({target}: Event) => validate(target as HTMLInputElement)
 				},
 				{
 					name: 'passwordRepeat',
 					placeholder: 'Пароль ещё раз',
 					type: 'password',
-					onBlur: addBlurListeners
+					onBlur: ({target}: Event) => validate(target as HTMLInputElement)
 				}
 			]
 		})
