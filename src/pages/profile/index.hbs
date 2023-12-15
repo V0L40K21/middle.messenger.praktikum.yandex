@@ -1,0 +1,22 @@
+<div class='profile'>
+	{{{Link class='profile__backbtn' text='Назад' onClick=this.backClick}}}
+
+	<div class='profile__avatarWrapper'>
+		<div class='profile__avatarWrapper_img'></div>
+		<p class='profile__avatarWrapper_name'>Name</p>
+	</div>
+	<div class='profile__lines'>
+		{{#each this.data}}
+			{{{ProfileListItem key=@key value=this}}}
+		{{/each}}
+	</div>
+	<div class='profile__buttons'>
+		{{{Link class='profile__buttons_edit' text='Изменить данные' onClick=this}}}
+		{{{Link class='profile__buttons_pass' text='Изменить пароль' onClick=this}}}
+		{{{Link
+			class='profile__buttons_logout'
+			text='Выйти'
+			onClick=this.logOutClick
+		}}}
+	</div>
+</div>

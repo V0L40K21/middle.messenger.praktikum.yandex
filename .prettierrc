@@ -1,5 +1,5 @@
 {
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "bracketSpacing": false,
   "jsxSingleQuote": true,
   "singleAttributePerLine": true,
@@ -8,5 +8,6 @@
   "semi": false,
   "singleQuote": true,
   "useTabs": true,
-  "printWidth": 80
+  "printWidth": 90,
+  "endOfLine": "auto"
 }
