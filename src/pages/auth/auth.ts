@@ -27,19 +27,6 @@ const validate = (input: HTMLInputElement) => {
 	}
 }
 
-const addBlurListeners = () => {
-	const loginInput = document.getElementById('login') as HTMLInputElement
-	const passwordInput = document.getElementById('password') as HTMLInputElement
-
-	loginInput.addEventListener('blur', () => {
-		validate(loginInput)
-	})
-
-	passwordInput.addEventListener('blur', () => {
-		validate(passwordInput)
-	})
-}
-
 export class Auth extends Block {
 	constructor() {
 		super({
@@ -53,12 +40,10 @@ export class Auth extends Block {
 				submit: (event: Event) => {
 					event.preventDefault()
 					const data: {[key: string]: string} = {}
-					Array.from(document.getElementsByTagName('input')).forEach(
-						(input) => {
-							data[input.name] = input.value
-							validate(input)
-						}
-					)
+					Array.from(document.getElementsByTagName('input')).forEach((input) => {
+						data[input.name] = input.value
+						validate(input)
+					})
 					const isValid = document.getElementsByClassName(
 						'auth__form_input__errorLabel'
 					).length
@@ -73,13 +58,13 @@ export class Auth extends Block {
 					name: 'login',
 					placeholder: 'Логин',
 					type: 'text',
-					onBlur: addBlurListeners
+					onBlur: ({target}: Event) => validate(target as HTMLInputElement)
 				},
 				{
 					name: 'password',
 					placeholder: 'Пароль',
 					type: 'password',
-					onBlur: addBlurListeners
+					onBlur: ({target}: Event) => validate(target as HTMLInputElement)
 				}
 			]
 		})

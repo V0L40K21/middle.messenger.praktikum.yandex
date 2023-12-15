@@ -7,7 +7,7 @@ interface IInputProps {
 	type: 'password' | 'text' | 'tel'
 	class: string
 	placeholder: string
-	onBlur?: () => void
+	onBlur: () => void
 	events: {
 		blur: () => void
 	}
