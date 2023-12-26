@@ -6,10 +6,10 @@ const METHODS = {
 }
 
 type TOptions = {
-	method: string
-	data: Record<string, string>
-	timeout: number
-	headers: Record<string, string>
+	method?: string
+	data?: Record<string, string>
+	timeout?: number
+	headers?: Record<string, string>
 }
 
 export class HTTPTransport {
@@ -20,7 +20,8 @@ export class HTTPTransport {
 	}
 
 	get(url: string, options: TOptions = {} as TOptions) {
-		const queryString = this.queryStringify(options.data)
+		const {data} = options
+		const queryString = this.queryStringify(data ?? {})
 		const fullUrl = queryString ? `${url}?${queryString}` : url
 
 		return this.request(
@@ -46,13 +47,16 @@ export class HTTPTransport {
 	}
 
 	request(url: string, options: TOptions = {} as TOptions, timeout: number = 5000) {
-		return new Promise((resolve, reject) => {
+		const {method, headers} = options
+		return new Promise<XMLHttpRequest>((resolve, reject) => {
 			const xhr = new XMLHttpRequest()
-			xhr.open(options.method, url)
+			if (method) {
+				xhr.open(method, url)
+			}
 
-			if (options.headers) {
-				Object.keys(options.headers).forEach((key) => {
-					xhr.setRequestHeader(key, options.headers[key])
+			if (headers) {
+				Object.keys(headers).forEach((key) => {
+					xhr.setRequestHeader(key, headers[key])
 				})
 			}
 

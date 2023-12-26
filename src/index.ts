@@ -7,7 +7,7 @@ import {Link} from './components/link'
 import {ProfileListItem} from './components/profileListItem/profile.listItem'
 import './styles/main.scss'
 import {registerComponent} from './utils/registerComponent'
-import {render} from './utils/render'
+import Router from './utils/router/Router'
 
 registerComponent('Input', Input)
 registerComponent('Button', Button)
@@ -17,6 +17,7 @@ registerComponent('ChatListItem', ChatListItem)
 registerComponent('ChatsHeader', ChatsHeader)
 registerComponent('ChatsBottom', ChatsBottom)
 
-window.addEventListener('DOMContentLoaded', () => {
-	render('auth')
-})
+// export const router = new Router()
+// router.use('/', Auth).use('/registration', Registration).start()
+
+Router.start()

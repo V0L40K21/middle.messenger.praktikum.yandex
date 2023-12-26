@@ -1,7 +1,7 @@
 import Block from '../../utils/Block'
 import template from './Link.hbs'
 
-interface IInputProps {
+interface ILinkProps {
 	text: string
 	class: string
 	onClick: () => void
@@ -11,7 +11,7 @@ interface IInputProps {
 }
 
 export class Link extends Block {
-	constructor(props: IInputProps) {
+	constructor(props: ILinkProps) {
 		super({
 			...props,
 			events: {

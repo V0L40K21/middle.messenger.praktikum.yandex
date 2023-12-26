@@ -1,7 +1,7 @@
 import Block from '../../utils/Block'
 import template from './Button.hbs'
 
-interface IInputProps {
+interface IButtonProps {
 	text: string
 	class: string
 	type: 'button' | 'submit'
@@ -12,7 +12,7 @@ interface IInputProps {
 }
 
 export class Button extends Block {
-	constructor(props: IInputProps) {
+	constructor(props: IButtonProps) {
 		super({
 			...props,
 			events: {

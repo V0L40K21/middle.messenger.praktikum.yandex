@@ -2,7 +2,7 @@ import {nanoid} from 'nanoid'
 
 import {EventBus} from './EventBus'
 
-interface IProps {
+interface IBlockProps {
 	events?: Record<string, (event: Event) => void>
 	[key: string]: any
 }
@@ -17,7 +17,7 @@ class Block {
 
 	public id: string
 
-	public props: IProps
+	public props: IBlockProps
 
 	public refs: Record<string, Block> = {}
 
@@ -27,18 +27,18 @@ class Block {
 
 	private _element: HTMLElement | null = null
 
-	constructor(propsWithChildren: IProps = {} as IProps) {
+	constructor(propsWithChildren: IBlockProps = {} as IBlockProps) {
 		this.id = nanoid(6)
 		const eventBus = new EventBus()
 		const {props, children} = this._getChildrenAndProps(propsWithChildren)
 		this.children = children
-		this.props = this._makePropsProxy(props) as IProps
+		this.props = this._makePropsProxy(props) as IBlockProps
 		this.eventBus = () => eventBus
 		this._registerEvents(eventBus)
 		eventBus.emit(Block.EVENTS.INIT)
 	}
 
-	private _getChildrenAndProps(childrenAndProps: IProps = {} as IProps) {
+	private _getChildrenAndProps(childrenAndProps: IBlockProps = {} as IBlockProps) {
 		const props: Record<string, any> = {}
 		const children: Record<string, Block> = {}
 		Object.entries(childrenAndProps).forEach(([key, value]) => {
@@ -109,7 +109,7 @@ class Block {
 		return true
 	}
 
-	setProps = (nextProps: IProps extends object ? IProps : never) => {
+	setProps = (nextProps: IBlockProps extends object ? IBlockProps : never) => {
 		if (!nextProps) {
 			return
 		}
@@ -150,17 +150,17 @@ class Block {
 		return this.element
 	}
 
-	private _makePropsProxy(props: IProps) {
+	private _makePropsProxy(props: IBlockProps) {
 		const self = this
 		return new Proxy(props, {
-			get(target: IProps, prop: string) {
+			get(target: IBlockProps, prop: string) {
 				const value = target[prop]
 				return typeof value === 'function' ? value.bind(target) : value
 			},
-			set(target: IProps, prop: string, value) {
+			set(target: IBlockProps, prop: string, value) {
 				const oldTarget = {...target}
 				target[prop] = value
-				self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target as IProps)
+				self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target as IBlockProps)
 				return true
 			},
 			deleteProperty() {

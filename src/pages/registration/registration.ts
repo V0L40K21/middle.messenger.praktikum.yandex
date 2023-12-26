@@ -1,6 +1,8 @@
+import {TSignUpData} from '../../controllers/types'
+import AuthController from '../../controllers/auth.controller'
 import Block from '../../utils/Block'
 import {TValidType, Validator} from '../../utils/Validator'
-import {render} from '../../utils/render'
+import router from '../../utils/router/Router'
 import template from './index.hbs'
 import './registration.scss'
 
@@ -46,7 +48,7 @@ export class Registration extends Block {
 			type: 'button',
 			onClick: (e: Event) => {
 				e.preventDefault()
-				render('auth')
+				router.go('/')
 			},
 
 			events: {
@@ -62,7 +64,8 @@ export class Registration extends Block {
 					).length
 					if (!isValid) {
 						console.log('data :', JSON.stringify(data))
-						render('chats')
+						AuthController.signUp(data as TSignUpData)
+						// render('chats')
 					}
 				}
 			},
