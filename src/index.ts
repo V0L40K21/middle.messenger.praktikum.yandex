@@ -5,19 +5,57 @@ import {ChatsHeader} from './components/chatsHeader/ChatsHeader'
 import {Input} from './components/input'
 import {Link} from './components/link'
 import {ProfileListItem} from './components/profileListItem/profile.listItem'
+import AuthController from './controllers/auth.controller'
+import {AuthPage} from './pages/auth/auth'
+import {ChatsPage} from './pages/chats/chats'
+import {ProfilePage} from './pages/profile/profile'
+import {RegistrationPage} from './pages/registration/registration'
 import './styles/main.scss'
 import {registerComponent} from './utils/registerComponent'
 import Router from './utils/router/Router'
 
-registerComponent('Input', Input)
-registerComponent('Button', Button)
-registerComponent('Link', Link)
-registerComponent('ProfileListItem', ProfileListItem)
-registerComponent('ChatListItem', ChatListItem)
-registerComponent('ChatsHeader', ChatsHeader)
-registerComponent('ChatsBottom', ChatsBottom)
+export enum EAppRoutes {
+	Auth = '/',
+	Register = '/registration',
+	Chats = '/chats',
+	Profile = '/profile'
+}
 
-// export const router = new Router()
-// router.use('/', Auth).use('/registration', Registration).start()
+window.addEventListener('DOMContentLoaded', async () => {
+	registerComponent('Input', Input)
+	registerComponent('Button', Button)
+	registerComponent('Link', Link)
+	registerComponent('ProfileListItem', ProfileListItem)
+	registerComponent('ChatListItem', ChatListItem)
+	registerComponent('ChatsHeader', ChatsHeader)
+	registerComponent('ChatsBottom', ChatsBottom)
 
-Router.start()
+	Router.use(EAppRoutes.Auth, AuthPage)
+		.use(EAppRoutes.Register, RegistrationPage)
+		.use(EAppRoutes.Chats, ChatsPage)
+		.use(EAppRoutes.Profile, ProfilePage)
+
+	let isProtectedRoute: boolean
+
+	switch (window.location.pathname) {
+		case EAppRoutes.Auth:
+		case EAppRoutes.Register:
+			isProtectedRoute = false
+			break
+		default:
+			isProtectedRoute = true
+	}
+
+	try {
+		await AuthController.fetchProfile()
+		Router.start()
+		if (!isProtectedRoute) {
+			Router.go(EAppRoutes.Profile)
+		}
+	} catch (error) {
+		Router.start()
+		if (isProtectedRoute) {
+			Router.go(EAppRoutes.Auth)
+		}
+	}
+})

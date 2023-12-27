@@ -1,5 +1,5 @@
 import AuthController from '../../controllers/auth.controller'
-import {TSignInData} from '../../controllers/types'
+import {TSignInData} from '../../api/types'
 import Block from '../../utils/Block'
 import {Validator} from '../../utils/Validator'
 import router from '../../utils/router/Router'
@@ -29,7 +29,7 @@ const validate = (input: HTMLInputElement) => {
 	}
 }
 
-export class Auth extends Block {
+export class AuthPage extends Block {
 	constructor() {
 		super({
 			type: 'button',

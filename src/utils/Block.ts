@@ -2,12 +2,7 @@ import {nanoid} from 'nanoid'
 
 import {EventBus} from './EventBus'
 
-interface IBlockProps {
-	events?: Record<string, (event: Event) => void>
-	[key: string]: any
-}
-
-class Block {
+class Block<P extends Record<string, any> = any> {
 	static EVENTS = {
 		INIT: 'init',
 		FLOW_CDM: 'flow:component-did-mount',
@@ -17,47 +12,51 @@ class Block {
 
 	public id: string
 
-	public props: IBlockProps
+	public props: P
 
 	public refs: Record<string, Block> = {}
 
-	private children: Record<string, Block>
+	private children: Record<string, Block | Block[]>
 
 	private eventBus: () => EventBus
 
 	private _element: HTMLElement | null = null
 
-	constructor(propsWithChildren: IBlockProps = {} as IBlockProps) {
+	constructor(propsWithChildren: P) {
 		this.id = nanoid(6)
 		const eventBus = new EventBus()
 		const {props, children} = this._getChildrenAndProps(propsWithChildren)
 		this.children = children
-		this.props = this._makePropsProxy(props) as IBlockProps
+		this.props = this._makePropsProxy(props)
 		this.eventBus = () => eventBus
 		this._registerEvents(eventBus)
 		eventBus.emit(Block.EVENTS.INIT)
 	}
 
-	private _getChildrenAndProps(childrenAndProps: IBlockProps = {} as IBlockProps) {
-		const props: Record<string, any> = {}
-		const children: Record<string, Block> = {}
+	private _getChildrenAndProps(childrenAndProps: P) {
+		const props: Record<string, unknown> = {}
+		const children: Record<string, Block | Block[]> = {}
 		Object.entries(childrenAndProps).forEach(([key, value]) => {
-			if (value instanceof Block) {
+			if (
+				Array.isArray(value) &&
+				value.length > 0 &&
+				value.every((v) => v instanceof Block)
+			) {
+				children[key] = value
+			} else if (value instanceof Block) {
 				children[key] = value
 			} else {
 				props[key] = value
 			}
 		})
-		return {props, children}
+		return {props: props as P, children}
 	}
 
 	private _addEvents() {
-		const {events} = this.props as {events?: Record<string, () => void>}
-		if (events) {
-			Object.keys(events).forEach((eventName) => {
-				this._element?.addEventListener(eventName, events[eventName])
-			})
-		}
+		const {events = {}} = this.props as P & {events: Record<string, () => void>}
+		Object.keys(events).forEach((eventName) => {
+			this._element?.addEventListener(eventName, events[eventName])
+		})
 	}
 
 	private _removeEvents() {
@@ -78,25 +77,28 @@ class Block {
 
 	private _init() {
 		this.init()
-	}
-
-	protected init() {
 		this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
 	}
 
+	protected init() {}
+
 	private _componentDidMount() {
 		this.componentDidMount()
-		Object.values(this.children).forEach((child) => {
-			child.dispatchComponentDidMount()
-		})
 	}
 
-	protected componentDidMount(): boolean {
+	protected componentDidMount() {
 		return true
 	}
 
 	public dispatchComponentDidMount() {
 		this.eventBus().emit(Block.EVENTS.FLOW_CDM)
+		Object.values(this.children).forEach((child) => {
+			if (Array.isArray(child)) {
+				child.forEach((ch) => ch.dispatchComponentDidMount())
+			} else {
+				child.dispatchComponentDidMount()
+			}
+		})
 	}
 
 	private _componentDidUpdate() {
@@ -109,7 +111,7 @@ class Block {
 		return true
 	}
 
-	setProps = (nextProps: IBlockProps extends object ? IBlockProps : never) => {
+	setProps = (nextProps: Partial<P>) => {
 		if (!nextProps) {
 			return
 		}
@@ -124,7 +126,7 @@ class Block {
 		const fragment = this.render()
 		this._removeEvents()
 		const newElement = fragment.firstElementChild as HTMLElement
-		if (this._element) {
+		if (this._element && newElement) {
 			this._element.replaceWith(newElement)
 		}
 		this._element = newElement
@@ -150,17 +152,17 @@ class Block {
 		return this.element
 	}
 
-	private _makePropsProxy(props: IBlockProps) {
+	private _makePropsProxy(props: P) {
 		const self = this
 		return new Proxy(props, {
-			get(target: IBlockProps, prop: string) {
+			get(target, prop: string) {
 				const value = target[prop]
 				return typeof value === 'function' ? value.bind(target) : value
 			},
-			set(target: IBlockProps, prop: string, value) {
+			set(target, prop: string, value) {
 				const oldTarget = {...target}
-				target[prop] = value
-				self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target as IBlockProps)
+				target[prop as keyof P] = value
+				self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target)
 				return true
 			},
 			deleteProperty() {

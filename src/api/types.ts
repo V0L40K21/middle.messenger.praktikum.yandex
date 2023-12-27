@@ -7,7 +7,13 @@ export type TSignUpData = {
 	phone: string
 }
 
+export type TSignUpResponse = {
+	id: number
+}
+
 export type TSignInData = {
 	login: string
 	password: string
 }
+
+export type TUser = {}

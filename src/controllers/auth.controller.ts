@@ -1,25 +1,49 @@
-import {HTTPTransport} from '../utils/Request'
+import {EAppRoutes} from '..'
+import API, {AuthApi} from '../api/auth.api'
+import {TSignInData, TSignUpData} from '../api/types'
+import store from '../utils/Store'
 import router from '../utils/router/Router'
-import {TSignInData, TSignUpData} from './types'
 
-const axios = new HTTPTransport()
+class AuthController {
+	private readonly api: AuthApi
 
-export default class AuthController {
-	static baseURL = 'https://ya-praktikum.tech/api/v2'
-
-	public static async signUp(data: TSignUpData) {
-		return axios.post(`${this.baseURL}/auth/signup`, {data}).then((res) => {
-			if (res.status === 200) {
-				router.go('/chats')
-			}
-		})
+	constructor() {
+		this.api = API
 	}
 
-	public static async signIn(data: TSignInData) {
-		return axios.post(`${this.baseURL}/auth/signin`, {data}).then((res) => {
-			if (res.status === 200) {
-				router.go('/chats')
-			}
-		})
+	async signIn(data: TSignInData) {
+		try {
+			await this.api.signIn(data)
+			await this.fetchProfile()
+			router.go(EAppRoutes.Chats)
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
+	async signUp(data: TSignUpData) {
+		try {
+			await this.api.signUp(data)
+			await this.fetchProfile()
+			router.go(EAppRoutes.Chats)
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
+	async fetchProfile() {
+		const user = await this.api.getProfile()
+		store.set('user', user)
+	}
+
+	async logOut() {
+		try {
+			await this.api.logOut()
+			router.go(EAppRoutes.Auth)
+		} catch (error) {
+			console.error(error)
+		}
 	}
 }
+
+export default new AuthController()

@@ -1,4 +1,4 @@
-import {TSignUpData} from '../../controllers/types'
+import {TSignUpData} from '../../api/types'
 import AuthController from '../../controllers/auth.controller'
 import Block from '../../utils/Block'
 import {TValidType, Validator} from '../../utils/Validator'
@@ -42,7 +42,7 @@ const validate = (input: HTMLInputElement) => {
 	}
 }
 
-export class Registration extends Block {
+export class RegistrationPage extends Block {
 	constructor() {
 		super({
 			type: 'button',

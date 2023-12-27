@@ -3,7 +3,7 @@ import {render} from '../../utils/render'
 import template from './index.hbs'
 import './profile.scss'
 
-export class Profile extends Block {
+export class ProfilePage extends Block {
 	constructor() {
 		super({
 			backClick: () => render('chats'),

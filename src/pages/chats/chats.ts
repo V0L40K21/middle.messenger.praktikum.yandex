@@ -3,7 +3,7 @@ import {render} from '../../utils/render'
 import './chats.scss'
 import template from './index.hbs'
 
-export class Chats extends Block {
+export class ChatsPage extends Block {
 	constructor() {
 		super({
 			onClick: () => render('profile'),

@@ -1,6 +1,3 @@
-import {Auth} from '../../pages/auth/auth'
-import {Chats} from '../../pages/chats/chats'
-import {Registration} from '../../pages/registration/registration'
 import Route from './Route'
 
 class Router {
@@ -65,6 +62,3 @@ class Router {
 	}
 }
 export default new Router()
-	.use('/', Auth)
-	.use('/registration', Registration)
-	.use('/chats', Chats)
