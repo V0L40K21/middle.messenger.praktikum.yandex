@@ -1,15 +1,21 @@
+import {EAppRoutes} from '../..'
+import authController from '../../controllers/auth.controller'
 import Block from '../../utils/Block'
-import {render} from '../../utils/render'
+import {withStore} from '../../utils/Store'
+import router from '../../utils/router/Router'
 import template from './index.hbs'
 import './profile.scss'
 
-export class ProfilePage extends Block {
+class ProfilePageBase extends Block {
 	constructor() {
 		super({
-			backClick: () => render('chats'),
-			logOutClick: () => render('auth'),
+			backClick: () => router.go(EAppRoutes.Chats),
+			logOutClick: async () => {
+				await authController.logOut()
+				router.go(EAppRoutes.Auth)
+			},
 			data: {
-				Почта: 'abc@xyz.com',
+				Почта: 'qwe@',
 				Логин: 'abc',
 				Имя: 'a',
 				Фамилия: 'b',
@@ -20,6 +26,10 @@ export class ProfilePage extends Block {
 	}
 
 	render() {
+		console.log(this.props)
 		return this.compile(template, this.props)
 	}
 }
+
+const withUser = withStore((state) => ({...state.user}))
+export const ProfilePage = withUser(ProfilePageBase)

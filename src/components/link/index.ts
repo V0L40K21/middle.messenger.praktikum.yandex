@@ -5,7 +5,7 @@ interface ILinkProps {
 	text: string
 	class: string
 	onClick: () => void
-	events: {
+	events?: {
 		click: () => void
 	}
 }

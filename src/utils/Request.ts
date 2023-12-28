@@ -26,7 +26,9 @@ export class HTTPTransport {
 	get<T>(path: string, options: TOptions = {}) {
 		const {data} = options
 		const queryString = Helpers.queryStringify(data ?? {})
-		const fullUrl = queryString ? `${path}?${queryString}` : path
+		const fullUrl = queryString
+			? `${this.endpoint}${path}?${queryString}`
+			: this.endpoint + path
 
 		return this.request<T>(fullUrl)
 	}

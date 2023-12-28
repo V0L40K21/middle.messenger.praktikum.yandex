@@ -1,5 +1,5 @@
 import {HTTPTransport} from '../utils/Request'
-import {TSignInData, TSignUpData, TSignUpResponse} from './types'
+import {TSignInData, TSignUpData, TSignUpResponse, TUser} from './types'
 
 export class AuthApi {
 	protected axios: HTTPTransport
@@ -17,7 +17,7 @@ export class AuthApi {
 	}
 
 	getProfile() {
-		return this.axios.get('/user')
+		return this.axios.get<TUser>('/user')
 	}
 
 	logOut() {

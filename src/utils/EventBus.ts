@@ -10,7 +10,7 @@ export class EventBus {
 
 	off(event: string, callback: () => void) {
 		if (!this.listeners[event]) {
-			throw new Error(`События "${event}" не существует`)
+			return
 		}
 
 		this.listeners[event] = this.listeners[event].filter(
@@ -20,7 +20,7 @@ export class EventBus {
 
 	emit(event: string, ...args: unknown[]) {
 		if (!this.listeners[event]) {
-			throw new Error(`События "${event}" не существует`)
+			return
 		}
 
 		this.listeners[event].forEach((listener) => {

@@ -10,13 +10,13 @@ class Block<P extends Record<string, any> = any> {
 		FLOW_RENDER: 'flow:render'
 	}
 
-	public id: string
+	public id = nanoid(6)
 
-	public props: P
+	protected props: P
 
 	public refs: Record<string, Block> = {}
 
-	private children: Record<string, Block | Block[]>
+	public children: Record<string, Block | Block[]>
 
 	private eventBus: () => EventBus
 
@@ -33,7 +33,7 @@ class Block<P extends Record<string, any> = any> {
 		eventBus.emit(Block.EVENTS.INIT)
 	}
 
-	private _getChildrenAndProps(childrenAndProps: P) {
+	_getChildrenAndProps(childrenAndProps: P) {
 		const props: Record<string, unknown> = {}
 		const children: Record<string, Block | Block[]> = {}
 		Object.entries(childrenAndProps).forEach(([key, value]) => {
@@ -52,14 +52,14 @@ class Block<P extends Record<string, any> = any> {
 		return {props: props as P, children}
 	}
 
-	private _addEvents() {
+	_addEvents() {
 		const {events = {}} = this.props as P & {events: Record<string, () => void>}
 		Object.keys(events).forEach((eventName) => {
 			this._element?.addEventListener(eventName, events[eventName])
 		})
 	}
 
-	private _removeEvents() {
+	_removeEvents() {
 		const {events} = this.props as {events?: Record<string, () => void>}
 		if (this._element && events) {
 			Object.keys(events).forEach((eventName) => {
@@ -68,7 +68,7 @@ class Block<P extends Record<string, any> = any> {
 		}
 	}
 
-	private _registerEvents(eventBus: EventBus) {
+	_registerEvents(eventBus: EventBus) {
 		eventBus.on(Block.EVENTS.INIT, this._init.bind(this))
 		eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
 		eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
@@ -82,11 +82,11 @@ class Block<P extends Record<string, any> = any> {
 
 	protected init() {}
 
-	private _componentDidMount() {
+	_componentDidMount() {
 		this.componentDidMount()
 	}
 
-	protected componentDidMount() {
+	componentDidMount() {
 		return true
 	}
 
@@ -152,7 +152,7 @@ class Block<P extends Record<string, any> = any> {
 		return this.element
 	}
 
-	private _makePropsProxy(props: P) {
+	_makePropsProxy(props: P) {
 		const self = this
 		return new Proxy(props, {
 			get(target, prop: string) {

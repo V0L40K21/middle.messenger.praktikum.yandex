@@ -35,27 +35,32 @@ window.addEventListener('DOMContentLoaded', async () => {
 		.use(EAppRoutes.Chats, ChatsPage)
 		.use(EAppRoutes.Profile, ProfilePage)
 
-	let isProtectedRoute: boolean
+	let isProtectedRoute = true
 
-	switch (window.location.pathname) {
-		case EAppRoutes.Auth:
-		case EAppRoutes.Register:
-			isProtectedRoute = false
-			break
-		default:
-			isProtectedRoute = true
+	const getPath = () => {
+		switch (window.location.pathname) {
+			case EAppRoutes.Auth:
+			case EAppRoutes.Register: {
+				isProtectedRoute = false
+				return window.location.pathname
+			}
+			default: {
+				isProtectedRoute = true
+				return window.location.pathname
+			}
+		}
 	}
 
 	try {
 		await AuthController.fetchProfile()
 		Router.start()
 		if (!isProtectedRoute) {
-			Router.go(EAppRoutes.Profile)
+			Router.go(getPath())
 		}
 	} catch (error) {
 		Router.start()
 		if (isProtectedRoute) {
-			Router.go(EAppRoutes.Auth)
+			Router.go(getPath())
 		}
 	}
 })
