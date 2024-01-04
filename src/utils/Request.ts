@@ -1,4 +1,5 @@
 import Helpers from './Helpers'
+import store from './Store'
 
 enum EMETHODS {
 	GET = 'GET',
@@ -73,6 +74,8 @@ export class HTTPTransport {
 
 			if (method === EMETHODS.GET) {
 				xhr.send()
+			} else if (data instanceof FormData) {
+				xhr.send(data)
 			} else {
 				const requestData = typeof data === 'object' ? JSON.stringify(data) : data
 				xhr.setRequestHeader('Content-Type', 'application/json')
@@ -83,6 +86,7 @@ export class HTTPTransport {
 				if (xhr.status === 200) {
 					resolve(xhr.response)
 				} else {
+					store.set('error', xhr.response.reason ?? xhr.statusText)
 					reject(
 						new Error(`${xhr.status}-я ошибка: ${xhr.response.reason ?? xhr.statusText}`)
 					)

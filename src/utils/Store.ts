@@ -9,12 +9,18 @@ export enum StoreEvents {
 
 type TState = {
 	user: TUser | null
+	error: string | null
+}
+
+const initialState: TState = {
+	user: null,
+	error: null
 }
 
 export class Store extends EventBus {
-	private state: TState = {} as TState
+	private state: TState = initialState
 
-	public set(keypath: string, data: unknown) {
+	public set(keypath: keyof TState, data: unknown) {
 		Helpers.set(this.state, keypath, data)
 
 		this.emit(StoreEvents.Updated, this.getState())
@@ -27,19 +33,16 @@ export class Store extends EventBus {
 
 const store = new Store()
 
-export function withStore<SP>(mapStateToProps: (state: TState) => SP) {
-	return function wrap<P>(Component: typeof Block<SP & P>) {
+export function withStore(mapStateToProps: (state: TState) => any) {
+	return function wrap(Component: typeof Block) {
+		let previousState: any
 		return class WithStore extends Component {
-			constructor(props: Omit<P, keyof SP>) {
-				let previousState = mapStateToProps(store.getState())
-
-				super({...(props as P), ...previousState})
-
+			constructor(props: any) {
+				previousState = mapStateToProps(store.getState())
+				super({...props, ...previousState})
 				store.on(StoreEvents.Updated, () => {
 					const stateProps = mapStateToProps(store.getState())
-
 					previousState = stateProps
-
 					this.setProps({...stateProps})
 				})
 			}

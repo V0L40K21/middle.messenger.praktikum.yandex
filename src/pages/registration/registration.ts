@@ -1,4 +1,5 @@
 import {TSignUpData} from '../../api/types'
+import {EAppRoutes} from '../../constants'
 import AuthController from '../../controllers/auth.controller'
 import Block from '../../utils/Block'
 import {TValidType, Validator} from '../../utils/Validator'
@@ -48,7 +49,7 @@ export class RegistrationPage extends Block {
 			type: 'button',
 			onClick: (e: Event) => {
 				e.preventDefault()
-				router.go('/')
+				router.go(EAppRoutes.Auth)
 			},
 
 			events: {
@@ -65,7 +66,7 @@ export class RegistrationPage extends Block {
 					if (!isValid) {
 						console.log('data :', JSON.stringify(data))
 						AuthController.signUp(data as TSignUpData)
-						// render('chats')
+						router.go(EAppRoutes.Chats)
 					}
 				}
 			},

@@ -1,4 +1,4 @@
-import {EAppRoutes} from '..'
+import {EAppRoutes} from '../constants'
 import API, {AuthApi} from '../api/auth.api'
 import {TSignInData, TSignUpData} from '../api/types'
 import store from '../utils/Store'
@@ -16,8 +16,8 @@ class AuthController {
 			await this.api.signIn(data)
 			await this.fetchProfile()
 			router.go(EAppRoutes.Chats)
-		} catch (error) {
-			console.error(error)
+		} catch (error: any) {
+			console.error('signIn error', error)
 		}
 	}
 
@@ -39,6 +39,7 @@ class AuthController {
 	async logOut() {
 		try {
 			await this.api.logOut()
+			store.set('user', null)
 			router.go(EAppRoutes.Auth)
 		} catch (error) {
 			console.error(error)

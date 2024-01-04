@@ -26,3 +26,8 @@ export type TUser = {
 	email: string
 	phone: string
 }
+
+export type TChangePasswordData = {
+	oldPassword: string
+	newPassword: string
+}

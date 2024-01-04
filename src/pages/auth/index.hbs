@@ -15,6 +15,11 @@
 					}}}
 				{{/each}}
 			</div>
+			<p>
+				{{#if error}}
+					{{error}}
+				{{/if}}
+			</p>
 			<div class='auth__buttons'>
 				{{{Button text='Войти' class='auth__buttons_signin' type='submit'}}}
 				{{{Link

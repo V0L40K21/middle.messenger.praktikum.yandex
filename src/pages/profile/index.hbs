@@ -2,8 +2,23 @@
 	{{{Link class='profile__backbtn' text='Назад' onClick=this.backClick}}}
 
 	<div class='profile__avatarWrapper'>
-		<div class='profile__avatarWrapper_img'></div>
-		<p class='profile__avatarWrapper_name'>Name</p>
+		<img class='profile__avatarWrapper_img' src={{avatar}}></img>
+		<div id='profile__avatarWrapper_input'>
+			<input
+				accept='img/*'
+				type='file'
+				placeholder='Загрузить аватар'
+				class='profile__avatarWrapper_input-file'
+				title=''
+				name='avatar'
+			/>
+			<br/>
+			{{{Link
+				class='profile__buttons_pass'
+				text='Изменить аватар'
+				onClick=this.changeAvatar
+			}}}
+		</div>
 	</div>
 	<div class='profile__lines'>
 		{{#each this.data}}
@@ -12,11 +27,11 @@
 	</div>
 	<div class='profile__buttons'>
 		{{{Link class='profile__buttons_edit' text='Изменить данные' onClick=this}}}
-		{{{Link class='profile__buttons_pass' text='Изменить пароль' onClick=this}}}
 		{{{Link
-			class='profile__buttons_logout'
-			text='Выйти'
-			onClick=this.logOutClick
+			class='profile__buttons_pass'
+			text='Изменить пароль'
+			onClick=this.changePasswordClick
 		}}}
+		{{{Link class='profile__buttons_logout' text='Выйти' onClick=this.logOutClick}}}
 	</div>
 </div>

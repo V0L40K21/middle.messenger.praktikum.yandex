@@ -5,21 +5,16 @@ import {ChatsHeader} from './components/chatsHeader/ChatsHeader'
 import {Input} from './components/input'
 import {Link} from './components/link'
 import {ProfileListItem} from './components/profileListItem/profile.listItem'
+import {EAppRoutes} from './constants'
 import AuthController from './controllers/auth.controller'
 import {AuthPage} from './pages/auth/auth'
+import {ChangePasswordPage} from './pages/changePassword/changePassword'
 import {ChatsPage} from './pages/chats/chats'
 import {ProfilePage} from './pages/profile/profile'
 import {RegistrationPage} from './pages/registration/registration'
 import './styles/main.scss'
 import {registerComponent} from './utils/registerComponent'
 import Router from './utils/router/Router'
-
-export enum EAppRoutes {
-	Auth = '/',
-	Register = '/registration',
-	Chats = '/chats',
-	Profile = '/profile'
-}
 
 window.addEventListener('DOMContentLoaded', async () => {
 	registerComponent('Input', Input)
@@ -34,6 +29,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 		.use(EAppRoutes.Register, RegistrationPage)
 		.use(EAppRoutes.Chats, ChatsPage)
 		.use(EAppRoutes.Profile, ProfilePage)
+		.use(EAppRoutes.ChangePassword, ChangePasswordPage)
 
 	let isProtectedRoute = true
 

@@ -1,12 +1,13 @@
+import {EAppRoutes} from '../../constants'
+import router from '../../utils/router/Router'
 import Block from '../../utils/Block'
-import {render} from '../../utils/render'
 import './chats.scss'
 import template from './index.hbs'
 
 export class ChatsPage extends Block {
 	constructor() {
 		super({
-			onClick: () => render('profile'),
+			onClick: () => router.go(EAppRoutes.Profile),
 			dialogs: [
 				{
 					name: 'Hukumka',

@@ -1,35 +1,54 @@
-import {EAppRoutes} from '../..'
+import {TUser} from '../../api/types'
+import {EAppRoutes, resourcesUrl} from '../../constants'
 import authController from '../../controllers/auth.controller'
+import userController from '../../controllers/user.controller'
 import Block from '../../utils/Block'
 import {withStore} from '../../utils/Store'
 import router from '../../utils/router/Router'
 import template from './index.hbs'
 import './profile.scss'
 
+type TProfilePageProps = {
+	backClick: () => void
+	logOutClick: () => Promise<void>
+	data: Record<string, any>
+} & TUser
+
 class ProfilePageBase extends Block {
-	constructor() {
+	constructor(props: TProfilePageProps) {
 		super({
 			backClick: () => router.go(EAppRoutes.Chats),
 			logOutClick: async () => {
 				await authController.logOut()
 				router.go(EAppRoutes.Auth)
 			},
+			changePasswordClick: () => router.go(EAppRoutes.ChangePassword),
+			changeAvatar: async () => {
+				const {files} = document.querySelector(
+					'.profile__avatarWrapper_input-file'
+				) as HTMLInputElement
+				if (files) {
+					const data = new FormData()
+					data.append('avatar', files[0])
+					await userController.changeAvatar(data)
+				}
+			},
+			avatar: resourcesUrl + props.avatar,
 			data: {
-				Почта: 'qwe@',
-				Логин: 'abc',
-				Имя: 'a',
-				Фамилия: 'b',
-				'Имя в чате': 'abc',
-				Телефон: '+7 (123) 123 12 12'
+				Почта: props.email,
+				Логин: props.login,
+				Имя: props.first_name,
+				Фамилия: props.second_name,
+				'Имя в чате': props.display_name,
+				Телефон: props.phone
 			}
 		})
 	}
 
 	render() {
-		console.log(this.props)
 		return this.compile(template, this.props)
 	}
 }
 
-const withUser = withStore((state) => ({...state.user}))
-export const ProfilePage = withUser(ProfilePageBase)
+const connect = withStore((state) => ({...state.user}))
+export const ProfilePage = connect(ProfilePageBase)
