@@ -60,6 +60,8 @@
     &_logout {
       @include appText(20px, $red, 400);
       cursor: pointer;
+      background-color: transparent;
+      border: none;
     }
   }
 }

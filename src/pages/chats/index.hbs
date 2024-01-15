@@ -1,11 +1,7 @@
 <div class='chats'>
 	<div class='chats__leftSide'>
 		<div class='chats__leftSide__menu'>
-			{{{Link
-				class='chats__leftSide__menu__link'
-				text='Профиль'
-				onClick=this.onClick
-			}}}
+			{{{Link class='chats__leftSide__menu__link' text='Профиль' onClick=this.onClick}}}
 			<form action='' class='chats__leftSide__menu__form'>
 				{{{Input
 					class='chats__leftSide__menu__form__input'
@@ -15,6 +11,9 @@
 			</form>
 		</div>
 		<div class='chats__leftSide__list'>
+			{{#each chats}}
+				{{{this}}}
+			{{/each}}
 			{{#each this.dialogs}}
 				{{{ChatListItem
 					name=this.name

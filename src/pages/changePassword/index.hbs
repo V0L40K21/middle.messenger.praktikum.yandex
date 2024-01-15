@@ -1,27 +1,14 @@
 <div class='changePassword'>
 	<div class='changePassword__container'>
 		<h1 class='changePassword__header'>Смена пароля</h1>
-		<form class='changePassword__form' onsubmit={{this.onSubmit}}>
+		<form class='changePassword__form'>
 			<div class='changePassword__form__inputs'>
-				{{#each inputs}}
-					{{{Input
-						id=this.name
-						name=this.name
-						class='changePassword__form_input'
-						placeholder=this.placeholder
-						type=this.type
-						onBlur=this.onBlur
-						errorMessage=this.errorMessage
-					}}}
-				{{/each}}
+				{{{oldPassword}}}
+				{{{newPassword}}}
 			</div>
 			<div class='changePassword__buttons'>
-				{{{Button text='Сменить' class='changePassword__buttons_signin' type='submit'}}}
-				{{{Link
-					class='changePassword__buttons_register'
-					text='Назад'
-					onClick=this.onClick
-				}}}
+				{{{button}}}
+				{{{back}}}
 			</div>
 		</form>
 	</div>

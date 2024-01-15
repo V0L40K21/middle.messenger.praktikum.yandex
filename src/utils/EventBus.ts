@@ -1,29 +1,35 @@
-export class EventBus {
-	private readonly listeners: Record<string, Array<(...args: any[]) => void>> = {}
+type Handler<A extends any[] = unknown[]> = (...args: A) => void
+type MapInterface<P> = P[keyof P]
 
-	on(event: string, callback: () => void) {
+export class EventBus<
+	E extends Record<string, string> = Record<string, string>,
+	Args extends Record<MapInterface<E>, any[]> = Record<string, any[]>
+> {
+	private readonly listeners: {
+		[K in MapInterface<E>]?: Handler<Args[K]>[]
+	} = {}
+
+	on<Event extends MapInterface<E>>(event: Event, callback: Handler<Args[Event]>) {
 		if (!this.listeners[event]) {
 			this.listeners[event] = []
 		}
-		this.listeners[event].push(callback)
+		this.listeners[event]?.push(callback)
 	}
 
-	off(event: string, callback: () => void) {
+	off<Event extends MapInterface<E>>(event: Event, callback: Handler<Args[Event]>) {
 		if (!this.listeners[event]) {
 			return
 		}
-
-		this.listeners[event] = this.listeners[event].filter(
+		this.listeners[event] = this.listeners[event]!.filter(
 			(listener) => listener !== callback
 		)
 	}
 
-	emit(event: string, ...args: unknown[]) {
+	emit<Event extends MapInterface<E>>(event: Event, ...args: Args[Event]) {
 		if (!this.listeners[event]) {
 			return
 		}
-
-		this.listeners[event].forEach((listener) => {
+		this.listeners[event]!.forEach((listener) => {
 			listener(...args)
 		})
 	}

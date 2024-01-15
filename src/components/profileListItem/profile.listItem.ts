@@ -1,14 +1,14 @@
 import Block from '../../utils/Block'
 import template from './profile.listItem.hbs'
 
-export class ProfileListItem extends Block {
-	constructor(props: any) {
-		super({
-			...props,
-			events: {
-				click: props.onClick
-			}
-		})
+type TProfileListItemProps = {
+	key: string
+	value: string
+}
+
+export class ProfileListItem extends Block<TProfileListItemProps> {
+	constructor(props: TProfileListItemProps) {
+		super({...props})
 	}
 
 	render() {

@@ -1,32 +1,14 @@
 <div class='auth'>
 	<div class='auth__container'>
 		<h1 class='auth__header'>Вход</h1>
-		<form class='auth__form' onsubmit={{this.onSubmit}}>
+		<form class='auth__form' novalidate>
 			<div class='auth__form__inputs'>
-				{{#each inputs}}
-					{{{Input
-						id=this.name
-						name=this.name
-						class='auth__form_input'
-						placeholder=this.placeholder
-						type=this.type
-						onBlur=this.onBlur
-						errorMessage=this.errorMessage
-					}}}
-				{{/each}}
+				{{{login}}}
+				{{{password}}}
 			</div>
-			<p>
-				{{#if error}}
-					{{error}}
-				{{/if}}
-			</p>
 			<div class='auth__buttons'>
-				{{{Button text='Войти' class='auth__buttons_signin' type='submit'}}}
-				{{{Link
-					class='auth__buttons_register'
-					text='Нет аккаунта?'
-					onClick=this.onClick
-				}}}
+				{{{button}}}
+				{{{link}}}
 			</div>
 		</form>
 	</div>

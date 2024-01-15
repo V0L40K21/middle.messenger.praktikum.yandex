@@ -1,35 +1,21 @@
-import {Button} from './components/button'
-import {ChatListItem} from './components/chatListItem/ChatListItem'
-import {ChatsBottom} from './components/chatsBottom/ChatsBottom'
-import {ChatsHeader} from './components/chatsHeader/ChatsHeader'
-import {Input} from './components/input'
-import {Link} from './components/link'
-import {ProfileListItem} from './components/profileListItem/profile.listItem'
 import {EAppRoutes} from './constants'
 import AuthController from './controllers/auth.controller'
-import {AuthPage} from './pages/auth/auth'
-import {ChangePasswordPage} from './pages/changePassword/changePassword'
-import {ChatsPage} from './pages/chats/chats'
-import {ProfilePage} from './pages/profile/profile'
-import {RegistrationPage} from './pages/registration/registration'
+import {LoginPage} from './pages/auth'
+import {ChangePasswordPage} from './pages/changePassword'
+import {ChangeProfilePage} from './pages/changeProfile'
+import {MessengerPage} from './pages/messenger'
+import {ProfilePage} from './pages/profile'
+import {RegisterPage} from './pages/registration'
 import './styles/main.scss'
-import {registerComponent} from './utils/registerComponent'
-import Router from './utils/router/Router'
+import Router from './utils/Router'
 
 window.addEventListener('DOMContentLoaded', async () => {
-	registerComponent('Input', Input)
-	registerComponent('Button', Button)
-	registerComponent('Link', Link)
-	registerComponent('ProfileListItem', ProfileListItem)
-	registerComponent('ChatListItem', ChatListItem)
-	registerComponent('ChatsHeader', ChatsHeader)
-	registerComponent('ChatsBottom', ChatsBottom)
-
-	Router.use(EAppRoutes.Auth, AuthPage)
-		.use(EAppRoutes.Register, RegistrationPage)
-		.use(EAppRoutes.Chats, ChatsPage)
+	Router.use(EAppRoutes.Auth, LoginPage)
+		.use(EAppRoutes.Register, RegisterPage)
+		.use(EAppRoutes.Messenger, MessengerPage)
 		.use(EAppRoutes.Profile, ProfilePage)
 		.use(EAppRoutes.ChangePassword, ChangePasswordPage)
+		.use(EAppRoutes.ChangeProfile, ChangeProfilePage)
 
 	let isProtectedRoute = true
 

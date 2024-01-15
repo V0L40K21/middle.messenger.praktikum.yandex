@@ -1,4 +1,7 @@
+import {EAppRoutes} from '../constants'
+import authController from '../controllers/auth.controller'
 import Helpers from './Helpers'
+import router from './Router'
 import store from './Store'
 
 enum EMETHODS {
@@ -86,6 +89,11 @@ export class HTTPTransport {
 				if (xhr.status === 200) {
 					resolve(xhr.response)
 				} else {
+					if (xhr.status === 401 || xhr.response.reason === 'Cookie is not valid') {
+						router.go(EAppRoutes.Auth)
+					} else if (xhr.response.reason === 'User already in system') {
+						authController.logOut()
+					}
 					store.set('error', xhr.response.reason ?? xhr.statusText)
 					reject(
 						new Error(`${xhr.status}-я ошибка: ${xhr.response.reason ?? xhr.statusText}`)

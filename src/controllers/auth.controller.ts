@@ -1,8 +1,9 @@
 import {EAppRoutes} from '../constants'
+import MessageController from './message.controller'
 import API, {AuthApi} from '../api/auth.api'
 import {TSignInData, TSignUpData} from '../api/types'
 import store from '../utils/Store'
-import router from '../utils/router/Router'
+import router from '../utils/Router'
 
 class AuthController {
 	private readonly api: AuthApi
@@ -15,29 +16,37 @@ class AuthController {
 		try {
 			await this.api.signIn(data)
 			await this.fetchProfile()
-			router.go(EAppRoutes.Chats)
+			router.go(EAppRoutes.Profile)
 		} catch (error: any) {
 			console.error('signIn error', error)
 		}
 	}
 
 	async signUp(data: TSignUpData) {
-		try {
-			await this.api.signUp(data)
-			await this.fetchProfile()
-			router.go(EAppRoutes.Chats)
-		} catch (error) {
-			console.error(error)
-		}
+		await this.api
+			.signUp(data)
+			.then(async () => {
+				await this.fetchProfile()
+				router.go(EAppRoutes.Profile)
+			})
+			.catch((error) => {
+				console.log('error :', error)
+				throw new Error(error)
+			})
 	}
 
 	async fetchProfile() {
 		const user = await this.api.getProfile()
-		store.set('user', user)
+		if (user) {
+			store.set('user', user)
+		} else {
+			throw new Error('profile not found')
+		}
 	}
 
 	async logOut() {
 		try {
+			MessageController.closeAll()
 			await this.api.logOut()
 			store.set('user', null)
 			router.go(EAppRoutes.Auth)

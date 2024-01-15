@@ -1,5 +1,5 @@
 import {HTTPTransport} from '../utils/Request'
-import {TChangePasswordData, TUser} from './types'
+import {TChangePasswordData, TChangeProfileData, TUser} from './types'
 
 export class UserApi {
 	protected axios: HTTPTransport
@@ -14,6 +14,10 @@ export class UserApi {
 
 	editAvatar(data: FormData) {
 		return this.axios.put<TUser>('/profile/avatar', data)
+	}
+
+	changeProfile(data: TChangeProfileData) {
+		return this.axios.put<TUser>('/profile', data)
 	}
 }
 
