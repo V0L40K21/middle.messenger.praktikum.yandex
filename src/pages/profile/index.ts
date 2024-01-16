@@ -56,8 +56,7 @@ class ProfilePageBase extends Block<IProfileProps> {
 		})
 	}
 
-	protected componentDidUpdate(oldProps: IProfileProps, newProps: IProfileProps) {
-		console.log('oldProps :', oldProps)
+	protected componentDidUpdate(_oldProps: IProfileProps, newProps: IProfileProps) {
 		;(this.children.fields as ProfileListItem[]).forEach((field, i) => {
 			field.setProps({value: newProps[userFields[i]]?.toString()})
 		})
