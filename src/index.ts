@@ -1,22 +1,48 @@
-import {Button} from './components/button'
-import {ChatListItem} from './components/chatListItem/ChatListItem'
-import {ChatsBottom} from './components/chatsBottom/ChatsBottom'
-import {ChatsHeader} from './components/chatsHeader/ChatsHeader'
-import {Input} from './components/input'
-import {Link} from './components/link'
-import {ProfileListItem} from './components/profileListItem/profile.listItem'
+import {EAppRoutes} from './constants'
+import AuthController from './controllers/auth.controller'
+import {LoginPage} from './pages/auth'
+import {ChangePasswordPage} from './pages/changePassword'
+import {ChangeProfilePage} from './pages/changeProfile'
+import {MessengerPage} from './pages/messenger'
+import {ProfilePage} from './pages/profile'
+import {RegisterPage} from './pages/registration'
 import './styles/main.scss'
-import {registerComponent} from './utils/registerComponent'
-import {render} from './utils/render'
+import Router from './utils/Router'
 
-registerComponent('Input', Input)
-registerComponent('Button', Button)
-registerComponent('Link', Link)
-registerComponent('ProfileListItem', ProfileListItem)
-registerComponent('ChatListItem', ChatListItem)
-registerComponent('ChatsHeader', ChatsHeader)
-registerComponent('ChatsBottom', ChatsBottom)
+window.addEventListener('DOMContentLoaded', async () => {
+	Router.use(EAppRoutes.Auth, LoginPage)
+		.use(EAppRoutes.Register, RegisterPage)
+		.use(EAppRoutes.Messenger, MessengerPage)
+		.use(EAppRoutes.Profile, ProfilePage)
+		.use(EAppRoutes.ChangePassword, ChangePasswordPage)
+		.use(EAppRoutes.ChangeProfile, ChangeProfilePage)
 
-window.addEventListener('DOMContentLoaded', () => {
-	render('auth')
+	let isProtectedRoute = true
+
+	const getPath = () => {
+		switch (window.location.pathname) {
+			case EAppRoutes.Auth:
+			case EAppRoutes.Register: {
+				isProtectedRoute = false
+				return window.location.pathname
+			}
+			default: {
+				isProtectedRoute = true
+				return window.location.pathname
+			}
+		}
+	}
+
+	try {
+		await AuthController.fetchProfile()
+		Router.start()
+		if (!isProtectedRoute) {
+			Router.go(getPath())
+		}
+	} catch (error) {
+		Router.start()
+		if (isProtectedRoute) {
+			Router.go(getPath())
+		}
+	}
 })

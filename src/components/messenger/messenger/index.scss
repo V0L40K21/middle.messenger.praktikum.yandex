@@ -1,0 +1,14 @@
+.messenger {
+  width: 70vw;
+  height: 100vh;
+  justify-content: space-between;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  &__messages {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+  }
+}
