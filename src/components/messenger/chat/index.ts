@@ -31,4 +31,4 @@ export const withSelectedChat = withStore((state) => ({
 	selectedChat: state.chats.find(({id}) => id === state.selectedChat)
 }))
 
-export const Chat = withSelectedChat(ChatBase)
+export const Chat = withSelectedChat(ChatBase as typeof Block)
