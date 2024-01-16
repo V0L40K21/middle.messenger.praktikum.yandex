@@ -1,4 +1,4 @@
-import {TSocketMessage, TUser} from '../api/types'
+import {TChatInfo, TSocketMessage, TUser} from '../api/types'
 import Block from './Block'
 import {EventBus} from './EventBus'
 import Helpers from './Helpers'
@@ -10,10 +10,10 @@ export enum StoreEvents {
 type TState = {
 	user: TUser | null
 	error: string | null
-	chats: any // TODO: ChatProps
+	chats: TChatInfo[]
 	messages: Record<number, TSocketMessage[]>
 	chatUsers: (TUser & {role: string})[]
-	selectedChat: any // TODO: ChatProps
+	selectedChat?: number
 	messageUser?: string
 }
 
@@ -23,13 +23,12 @@ const initialState: TState = {
 	messages: {},
 	chats: [
 		{
-			name: 'Andrey',
-			message: 'Hello world',
-			time: '18:22'
+			id: 123,
+			title: 'Andrey',
+			unread_count: 2
 		}
 	],
-	chatUsers: [],
-	selectedChat: null
+	chatUsers: []
 }
 
 export class Store extends EventBus {

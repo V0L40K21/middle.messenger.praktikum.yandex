@@ -1,10 +1,20 @@
-<div class='{{styles.chats-list}}'>
-	{{#if isLoaded}}
-		{{#each chats}}
-			{{{this}}}
-		{{/each}}
+<div class='chatList'>
+	<div class='chatList__header'>
+		{{{input}}}
+		{{{btnAddChat}}}
+	</div>
+	<div class='chatList__list'>
+		{{#if isLoaded}}
+			{{#if chats}}
+				{{#each chats}}
+					{{{this}}}
+				{{/each}}
+			{{/if}}
+		{{else}}
+			Loading...
+		{{/if}}
+	</div>
+	<div class='chatList__bottom'>
 		{{{profileLink}}}
-	{{else}}
-		Loading...
-	{{/if}}
+	</div>
 </div>

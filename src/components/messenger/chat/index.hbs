@@ -1,6 +1,15 @@
-<div class="{{ styles.chat }} {{#if isSelected }}{{ styles.chat--selected }}{{/if}}">
-    {{title}}
-    {{#if unread_count }}
-        <span class="{{ styles.chat__badge }}">{{unread_count}}</span>
-    {{/if}}
+<div class='chatListItem'>
+	<div class='chatListItem_left'>
+		<div class='chatListItem_left__photo'></div>
+	</div>
+	<div class='chatListItem_center'>
+		<div class='chatListItem_center__name'>{{title}}</div>
+		<div class='chatListItem_center__message'>{{message}}</div>
+	</div>
+	<div class='chatListItem_right'>
+		<div class='chatListItem_right__time'>{{time}}</div>
+		{{#if unread_count}}<div
+				class='chatListItem_right__count'
+			>{{unread_count}}</div>{{/if}}
+	</div>
 </div>

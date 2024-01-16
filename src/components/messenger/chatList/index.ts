@@ -3,16 +3,20 @@ import {EAppRoutes} from '../../../constants'
 import ChatController from '../../../controllers/chat.controller'
 import Block from '../../../utils/Block'
 import {withStore} from '../../../utils/Store'
+import {Validator} from '../../../utils/Validator'
+import {Button} from '../../button'
+import {Input} from '../../input'
 import {Link} from '../../link'
 import {Chat} from '../chat'
 import template from './index.hbs'
+import './index.scss'
 
 type TChatListProps = {
 	chats: TChatInfo[]
 	isLoaded: boolean
 }
 
-class ChatListBase extends Block<TChatListProps> {
+class ChatsListBase extends Block<TChatListProps> {
 	constructor(props: TChatListProps) {
 		super({...props})
 	}
@@ -22,6 +26,23 @@ class ChatListBase extends Block<TChatListProps> {
 		this.children.profileLink = new Link({
 			to: EAppRoutes.Profile,
 			label: 'Профиль'
+		})
+		this.children.input = new Input({
+			name: 'chatName',
+			placeholder: 'Название чата',
+			type: 'text',
+			events: {
+				blur(event) {
+					const target = event.target as HTMLInputElement
+					Validator.validateNode(target, 'auth__form_input', 'name')
+				}
+			}
+		})
+		this.children.btnAddChat = new Button({
+			label: 'Добавить',
+			events: {
+				click: () => this.addChat()
+			}
 		})
 	}
 
@@ -37,11 +58,18 @@ class ChatListBase extends Block<TChatListProps> {
 					...data,
 					events: {
 						click: () => {
-							ChatController.selectChat(data.id, data.title)
+							if (data) {
+								ChatController.selectChat(data.id, data.title)
+							}
 						}
 					}
 				})
 		)
+	}
+
+	private addChat() {
+		if (!(this.children.input as Input).getValue().trim()) return
+		ChatController.create((this.children.input as Input).getValue())
 	}
 
 	protected render() {
@@ -49,5 +77,6 @@ class ChatListBase extends Block<TChatListProps> {
 	}
 }
 
-const connect = withStore((state) => ({chats: [...(state.chats || [])]}))
-export const ChatList = connect(ChatListBase)
+const withChats = withStore((state) => ({chats: state.chats}))
+
+export const ChatsList = withChats(ChatsListBase)

@@ -61,9 +61,9 @@ export type TSocketMessage = {
 export type TChatInfo = {
 	id: number
 	title: string
-	avatar: string
+	avatar?: string
 	unread_count: number
-	last_message: {
+	last_message?: {
 		user: TUser
 		time: string
 		content: string

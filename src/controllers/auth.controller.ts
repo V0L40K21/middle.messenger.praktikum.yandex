@@ -16,7 +16,7 @@ class AuthController {
 		try {
 			await this.api.signIn(data)
 			await this.fetchProfile()
-			router.go(EAppRoutes.Profile)
+			router.go(EAppRoutes.Messenger)
 		} catch (error: any) {
 			console.error('signIn error', error)
 		}
@@ -27,7 +27,7 @@ class AuthController {
 			.signUp(data)
 			.then(async () => {
 				await this.fetchProfile()
-				router.go(EAppRoutes.Profile)
+				router.go(EAppRoutes.Messenger)
 			})
 			.catch((error) => {
 				console.log('error :', error)
