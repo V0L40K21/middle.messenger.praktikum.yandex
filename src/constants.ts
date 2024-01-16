@@ -1,8 +1,8 @@
 export enum EAppRoutes {
 	Auth = '/',
-	Register = '/registration',
+	Register = '/sign-up',
 	Messenger = '/messenger',
-	Profile = '/profile',
+	Profile = '/settings',
 	ChangePassword = '/profile/change-password',
 	ChangeProfile = '/profile/change-profile'
 }
