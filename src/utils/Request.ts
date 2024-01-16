@@ -1,5 +1,4 @@
 import {EAppRoutes} from '../constants'
-import authController from '../controllers/auth.controller'
 import Helpers from './Helpers'
 import router from './Router'
 import store from './Store'
