@@ -121,4 +121,4 @@ export class ChangeProfilePageBase extends Block<IChangeProfileProps> {
 }
 
 const withUser = withStore((state) => ({...state.user}))
-export const ChangeProfilePage = withUser(ChangeProfilePageBase)
+export const ChangeProfilePage = withUser(ChangeProfilePageBase as typeof Block)

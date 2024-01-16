@@ -1,12 +1,11 @@
-import {Button} from '../../components/button'
 import {TUser} from '../../api/types'
+import {Button} from '../../components/button'
 import {Link} from '../../components/link'
 import {ProfileAvatar} from '../../components/profileAvatar'
 import {ProfileListItem} from '../../components/profileListItem/profile.listItem'
 import {EAppRoutes, resourcesUrl} from '../../constants'
 import authController from '../../controllers/auth.controller'
 import Block from '../../utils/Block'
-import router from '../../utils/Router'
 import {withStore} from '../../utils/Store'
 import template from './index.hbs'
 import './index.scss'
@@ -58,6 +57,7 @@ class ProfilePageBase extends Block<IProfileProps> {
 	}
 
 	protected componentDidUpdate(oldProps: IProfileProps, newProps: IProfileProps) {
+		console.log('oldProps :', oldProps)
 		;(this.children.fields as ProfileListItem[]).forEach((field, i) => {
 			field.setProps({value: newProps[userFields[i]]?.toString()})
 		})
@@ -70,4 +70,4 @@ class ProfilePageBase extends Block<IProfileProps> {
 }
 
 const withUser = withStore((state) => ({...state.user}))
-export const ProfilePage = withUser(ProfilePageBase)
+export const ProfilePage = withUser(ProfilePageBase as typeof Block)

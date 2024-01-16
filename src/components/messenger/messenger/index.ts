@@ -51,6 +51,7 @@ class MessengerBase extends Block<TMessengerProps> {
 		oldProps: TMessengerProps,
 		newProps: TMessengerProps
 	): boolean {
+		console.log('oldProps :', oldProps)
 		this.children.messages = this.createMessages(newProps)
 		return true
 	}
@@ -82,4 +83,4 @@ const withSelectedChatMessages = withStore((state) => {
 	}
 })
 
-export const Messenger = withSelectedChatMessages(MessengerBase)
+export const Messenger = withSelectedChatMessages(MessengerBase as typeof Block)

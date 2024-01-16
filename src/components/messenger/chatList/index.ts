@@ -47,6 +47,7 @@ class ChatsListBase extends Block<TChatListProps> {
 	}
 
 	protected componentDidUpdate(oldProps: TChatListProps, newProps: TChatListProps) {
+		console.log('oldProps :', oldProps)
 		this.children.chats = this.createChats(newProps)
 		return true
 	}
@@ -80,4 +81,4 @@ class ChatsListBase extends Block<TChatListProps> {
 
 const withChats = withStore((state) => ({chats: state.chats}))
 
-export const ChatsList = withChats(ChatsListBase)
+export const ChatsList = withChats(ChatsListBase as typeof Block)
