@@ -30,7 +30,7 @@ class ProfilePageBase extends Block<IProfileProps> {
 			class: 'profile__backbtn'
 		})
 		this.children.fields = userFields.map(
-			(name) => new ProfileListItem({key: name, value: this.props[name]})
+			(name) => new ProfileListItem({key: name, value: this.props[name].toString()})
 		)
 		this.children.avatar = new ProfileAvatar({
 			src: resourcesUrl + this.props.avatar
