@@ -92,7 +92,7 @@ export class HTTPTransport {
 					if (xhr.status === 401 || xhr.response.reason === 'Cookie is not valid') {
 						router.go(EAppRoutes.Auth)
 					} else if (xhr.response.reason === 'User already in system') {
-						authController.logOut()
+						router.go(EAppRoutes.Messenger)
 					}
 					store.set('error', xhr.response.reason ?? xhr.statusText)
 					reject(
