@@ -60,6 +60,7 @@ class ChatsListBase extends Block<TChatListProps> {
 						click: () => {
 							if (data) {
 								ChatController.selectChat(data.id, data.title)
+								ChatController.getUsers(data.id)
 							}
 						}
 					}
