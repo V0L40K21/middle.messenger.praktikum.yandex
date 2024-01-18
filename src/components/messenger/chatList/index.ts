@@ -46,8 +46,7 @@ class ChatsListBase extends Block<TChatListProps> {
 		})
 	}
 
-	protected componentDidUpdate(oldProps: TChatListProps, newProps: TChatListProps) {
-		console.log('oldProps :', oldProps)
+	protected componentDidUpdate(_oldProps: TChatListProps, newProps: TChatListProps) {
 		this.children.chats = this.createChats(newProps)
 		return true
 	}
@@ -70,8 +69,10 @@ class ChatsListBase extends Block<TChatListProps> {
 	}
 
 	private addChat() {
-		if (!(this.children.input as Input).getValue().trim()) return
-		ChatController.create((this.children.input as Input).getValue())
+		const input = this.children.input as Input
+		if (!input.getValue().trim()) return
+		ChatController.create(input.getValue())
+		input.setValue('')
 	}
 
 	protected render() {

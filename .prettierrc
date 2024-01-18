@@ -2,6 +2,7 @@
   "arrowParens": "always",
   "bracketSpacing": false,
   "jsxSingleQuote": true,
+  "jsxBracketSameLine": true,
   "singleAttributePerLine": true,
   "trailingComma": "none",
   "tabWidth": 2,

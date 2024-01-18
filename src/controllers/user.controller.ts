@@ -2,7 +2,7 @@ import {TChangePasswordData, TChangeProfileData} from '../api/types'
 import API, {UserApi} from '../api/user.api'
 import {EAppRoutes} from '../constants'
 import router from '../utils/Router'
-import store from '../utils/Store'
+import authController from './auth.controller'
 
 class UserController {
 	private readonly api: UserApi
@@ -16,24 +16,26 @@ class UserController {
 			await this.api.changePassword(data)
 			router.go(EAppRoutes.Profile)
 		} catch (error: any) {
-			console.error('changePassword error', error)
+			console.error('UserController.changePassword error', error)
 		}
 	}
 
 	async changeAvatar(data: FormData) {
-		const user = await this.api.editAvatar(data)
-		store.set('user', user)
+		try {
+			await this.api.editAvatar(data)
+			await authController.fetchProfile()
+		} catch (error) {
+			console.error('UserController.changeAvatar error', error)
+		}
 	}
 
 	async changeProfile(data: TChangeProfileData) {
 		try {
-			const user = await this.api.changeProfile(data)
-			if (user) {
-				store.set('user', user)
-				router.go(EAppRoutes.Profile)
-			}
+			await this.api.changeProfile(data)
+			await authController.fetchProfile()
+			router.go(EAppRoutes.Profile)
 		} catch (error) {
-			console.error('changeProfile error', error)
+			console.error('UserController.changeProfile error', error)
 		}
 	}
 }

@@ -111,7 +111,7 @@ export class ChangeProfilePageBase extends Block<IChangeProfileProps> {
 			.filter((child) => child instanceof Input)
 			.map((child) => [(child as Input).getName(), (child as Input).getValue()])
 		const data = Object.fromEntries(values)
-		console.log('data :', data)
+		console.log('ChangeProfile data :', data)
 		userController.changeProfile(data)
 	}
 

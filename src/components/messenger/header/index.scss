@@ -1,0 +1,27 @@
+@import "../../../styles/main.scss";
+
+.header {
+  padding: 10px;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  &__title {
+    @include appText(20px, $mainBlue, 600);
+  }
+  &__btn {
+    @include appText(20px, $mainBlue, 600);
+    border-width: 0;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  &__settings {
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    display: none;
+    border: 1px solid $mainBlue;
+    border-radius: 10px;
+    padding: 5px;
+    flex-direction: column;
+  }
+}

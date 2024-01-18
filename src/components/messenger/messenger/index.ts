@@ -5,12 +5,13 @@ import {withStore} from '../../../utils/Store'
 import {Validator} from '../../../utils/Validator'
 import {Button} from '../../button'
 import {Input} from '../../input'
+import {Header} from '../header'
 import {Message} from '../message'
 import template from './index.hbs'
 import './index.scss'
 
 type TMessengerProps = {
-	selectedChat?: number
+	selectedChat: number
 	messages: TSocketMessage[]
 	userId: number
 }
@@ -41,17 +42,17 @@ class MessengerBase extends Block<TMessengerProps> {
 					const input = this.children.input as Input
 					const message = input.getValue()
 					input.setValue('')
-					messageController.sendMessage(this.props.selectedChat!, message)
+					messageController.sendMessage(this.props.selectedChat, message)
 				}
 			}
 		})
+		this.children.header = new Header({})
 	}
 
 	protected componentDidUpdate(
-		oldProps: TMessengerProps,
+		_oldProps: TMessengerProps,
 		newProps: TMessengerProps
 	): boolean {
-		console.log('oldProps :', oldProps)
 		this.children.messages = this.createMessages(newProps)
 		return true
 	}

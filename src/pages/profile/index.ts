@@ -60,7 +60,10 @@ class ProfilePageBase extends Block<IProfileProps> {
 		;(this.children.fields as ProfileListItem[]).forEach((field, i) => {
 			field.setProps({value: newProps[userFields[i]]?.toString()})
 		})
-		return false
+		this.children.avatar = new ProfileAvatar({
+			src: resourcesUrl + this.props.avatar
+		})
+		return true
 	}
 
 	render() {
