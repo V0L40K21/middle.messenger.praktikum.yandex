@@ -40,7 +40,7 @@ export class ChatsBottom extends Block {
 					).length
 					if (!isValid) {
 						input.value = ''
-						console.log('data :', JSON.stringify(data))
+						console.log('ChatsBottom data :', JSON.stringify(data))
 					}
 				}
 			}

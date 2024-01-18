@@ -10,46 +10,83 @@ class ChatController {
 	}
 
 	async create(title: string) {
-		await this.api.create(title)
-		this.fetchChats()
+		try {
+			await this.api.create(title)
+			this.fetchChats()
+		} catch (error) {
+			console.error('ChatController.create error', error)
+		}
 	}
 
 	async fetchChats() {
-		const chats = await this.api.read()
-		if (chats.length) {
-			chats.map(async (chat) => {
-				const token = await this.api.getToken(chat.id)
-				await MessageController.connect(chat.id, token)
-			})
-			store.set('chats', chats)
+		try {
+			const chats = await this.api.read()
+			if (chats.length) {
+				chats.map(async (chat) => {
+					const token = await this.api.getToken(chat.id)
+					await MessageController.connect(chat.id, token)
+				})
+				store.set('chats', chats)
+			}
+		} catch (error) {
+			console.error('ChatController.fetchChats error :', error)
 		}
 	}
 
 	async fetchChatUsers(id: number) {
-		const users = await this.api.getUsers(id)
-		if (users.length) {
-			store.set('chatUsers', users)
+		try {
+			const users = await this.api.getUsers(id)
+			if (users.length) {
+				store.set('chatUsers', users)
+			}
+		} catch (error) {
+			console.error('ChatController.fetchChatUsers error :', error)
 		}
 	}
 
 	async addUserToChat(id: number, userId: number) {
-		await this.api.addUsers(id, [userId])
-		this.fetchChatUsers(id)
+		try {
+			await this.api.addUsers(id, [userId])
+			this.fetchChatUsers(id)
+		} catch (error) {
+			console.error('ChatController.addUserToChat error', error)
+		}
 	}
 
 	async deleteChat(id: number) {
-		await this.api.delete(id)
-		this.fetchChats()
+		try {
+			await this.api.delete(id)
+			store.set('selectedChat', undefined)
+			this.fetchChats()
+		} catch (error) {
+			console.error('ChatController.deleteChat error', error)
+		}
 	}
 
 	async deleteUser(id: number, userId: number) {
-		await this.api.deleteUser(id, [userId])
-		this.fetchChatUsers(id)
+		try {
+			await this.api.deleteUser(id, [userId])
+			this.fetchChatUsers(id)
+		} catch (error) {
+			console.error('ChatController.deleteUser error', error)
+		}
+	}
+
+	async uploadAvatar(id: number, avatar: FormData) {
+		try {
+			await this.api.uploadAvatar(id, avatar)
+		} catch (error) {
+			console.error('ChatController.uploadAvatar error', error)
+		}
 	}
 
 	async getUsers(id: number) {
-		await this.api.getUsers(id)
-		this.fetchChatUsers(id)
+		try {
+			await this.api.getUsers(id)
+			this.fetchChatUsers(id)
+		} catch (error) {
+			console.error('ChatController.getUsers error', error)
+		}
 	}
 
 	getToken(id: number) {

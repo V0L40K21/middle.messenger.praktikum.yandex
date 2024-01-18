@@ -10,5 +10,9 @@
     flex-direction: column;
     flex: 1;
     justify-content: flex-end;
+    overflow-y: auto;
+  }
+  &__footer {
+    padding: 10px;
   }
 }

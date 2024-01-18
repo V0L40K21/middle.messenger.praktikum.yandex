@@ -1,3 +1,4 @@
+import {resourcesUrl} from '../../../constants'
 import {TChatInfo} from '../../../api/types'
 import Block from '../../../utils/Block'
 import {withStore} from '../../../utils/Store'
@@ -9,6 +10,7 @@ type TChatProps = {
 	title: string
 	unreadCount: number
 	selectedChat: TChatInfo | null
+	avatar: string
 	events: {
 		click: () => void
 	}
@@ -16,7 +18,10 @@ type TChatProps = {
 
 class ChatBase extends Block<TChatProps> {
 	constructor(props: TChatProps) {
-		super({...props})
+		super({
+			...props,
+			avatar: props.avatar ? resourcesUrl + props.avatar : ''
+		})
 	}
 
 	protected render(): DocumentFragment {
@@ -28,7 +33,8 @@ class ChatBase extends Block<TChatProps> {
 }
 
 export const withSelectedChat = withStore((state) => ({
-	selectedChat: state.chats.find(({id}) => id === state.selectedChat)
+	selectedChat: state.chats.find(({id}) => id === state.selectedChat),
+	users: state.chatUsers
 }))
 
 export const Chat = withSelectedChat(ChatBase as typeof Block)

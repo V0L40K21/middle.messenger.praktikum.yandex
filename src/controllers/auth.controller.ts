@@ -18,29 +18,30 @@ class AuthController {
 			await this.fetchProfile()
 			router.go(EAppRoutes.Messenger)
 		} catch (error: any) {
-			console.error('signIn error', error)
+			console.error('AuthController.signIn error', error)
 		}
 	}
 
 	async signUp(data: TSignUpData) {
-		await this.api
-			.signUp(data)
-			.then(async () => {
-				await this.fetchProfile()
-				router.go(EAppRoutes.Messenger)
-			})
-			.catch((error) => {
-				console.log('error :', error)
-				throw new Error(error)
-			})
+		try {
+			await this.api.signUp(data)
+			await this.fetchProfile()
+			router.go(EAppRoutes.Messenger)
+		} catch (error) {
+			console.error('AuthController.signUp error :', error)
+		}
 	}
 
 	async fetchProfile() {
-		const user = await this.api.getProfile()
-		if (user) {
-			store.set('user', user)
-		} else {
-			throw new Error('profile not found')
+		try {
+			const user = await this.api.getProfile()
+			if (user) {
+				store.set('user', user)
+			} else {
+				throw new Error('profile not found')
+			}
+		} catch (error) {
+			console.error('AuthController.fetchProfile error :', error)
 		}
 	}
 
@@ -51,7 +52,7 @@ class AuthController {
 			store.set('user', null)
 			router.go(EAppRoutes.Auth)
 		} catch (error) {
-			console.error(error)
+			console.error('AuthController.logOut error', error)
 		}
 	}
 }

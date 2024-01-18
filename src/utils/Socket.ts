@@ -48,11 +48,15 @@ export default class Socket extends EventBus {
 			this.emit(ESocketEvents.Error, e)
 		})
 		socket.addEventListener('message', (message) => {
-			const data = JSON.parse(message.data)
-			if (data.type === 'pong') {
-				return
+			try {
+				const data = JSON.parse(message.data)
+				if (data.type === 'pong') {
+					return
+				}
+				this.emit(ESocketEvents.Message, data)
+			} catch (error) {
+				console.log('socket.addEventListener error :', error)
 			}
-			this.emit(ESocketEvents.Message, data)
 		})
 	}
 }
