@@ -72,14 +72,6 @@ class ChatController {
 		}
 	}
 
-	async uploadAvatar(id: number, avatar: FormData) {
-		try {
-			await this.api.uploadAvatar(id, avatar)
-		} catch (error) {
-			console.error('ChatController.uploadAvatar error', error)
-		}
-	}
-
 	async getUsers(id: number) {
 		try {
 			await this.api.getUsers(id)
