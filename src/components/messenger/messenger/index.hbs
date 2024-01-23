@@ -2,9 +2,13 @@
 	{{#if selectedChat}}
 		<div>{{{header}}}</div>
 		<div class='messenger__messages'>
-			{{#each messages}}
-				{{{this}}}
-			{{/each}}
+			{{#if messages}}
+				{{#each messages}}
+					{{{this}}}
+				{{/each}}
+			{{else}}
+				Сообщний нет
+			{{/if}}
 		</div>
 		<div class='messenger__footer'>
 			{{{input}}}
