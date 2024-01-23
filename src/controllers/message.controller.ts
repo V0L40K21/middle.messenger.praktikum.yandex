@@ -9,7 +9,7 @@ class MessageController {
 	async connect(id: number, token: string) {
 		try {
 			if (this.sockets.has(id)) {
-				return
+				this.fetchOldMessages(id)
 			}
 			const userId = store.getState().user?.id
 			const socket = new Socket(`${socketUrl}/${userId}/${id}/${token}`)
