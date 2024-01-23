@@ -1,6 +1,7 @@
 import {TChatInfo} from '../../../api/types'
 import {EAppRoutes} from '../../../constants'
 import ChatController from '../../../controllers/chat.controller'
+import MessageController from '../../../controllers/message.controller'
 import Block from '../../../utils/Block'
 import {withStore} from '../../../utils/Store'
 import {Validator} from '../../../utils/Validator'
@@ -61,6 +62,7 @@ class ChatsListBase extends Block<TChatListProps> {
 							if (data) {
 								ChatController.selectChat(data.id, data.title)
 								ChatController.getUsers(data.id)
+								MessageController.fetchOldMessages(data.id)
 							}
 						}
 					}

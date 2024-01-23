@@ -6,10 +6,8 @@
   flex: 1;
   flex-direction: column;
   &__messages {
-    display: flex;
-    flex-direction: column;
+    display: block;
     flex: 1;
-    justify-content: flex-end;
     overflow-y: auto;
   }
   &__footer {
