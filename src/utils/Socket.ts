@@ -14,6 +14,11 @@ export default class Socket extends EventBus {
 		this.socket = new WebSocket(this.url)
 		this.subscribe(this.socket)
 		this.setupPing()
+		return new Promise<void>((resolve) => {
+			this.on(ESocketEvents.Connected, () => {
+				resolve()
+			})
+		})
 	}
 
 	public send(data: unknown) {
