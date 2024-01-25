@@ -1,0 +1,13 @@
+@import "../../../styles/main.scss";
+
+.message {
+  display: flex;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+  background-color: $lightGray;
+  &_mine {
+    background-color: $mainBlue;
+    justify-content: flex-end;
+  }
+}

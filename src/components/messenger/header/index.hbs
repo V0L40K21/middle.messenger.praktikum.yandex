@@ -1,0 +1,20 @@
+<div class='header'>
+	<span class='header__title'>{{selectedChat.title}}</span>
+	{{{settings}}}
+	<div class='header__settings' id='settingsModal'>
+		{{{removeChat}}}
+		<br />
+		{{#each users}}
+			<div class='header__settings_user' id='{{{id}}}'>
+				{{{login}}}
+				[{{{id}}}]
+			</div>
+		{{/each}}
+		<br />
+		<div>
+			{{{userIdInput}}}
+			{{{addUserBtn}}}
+			{{{removeUserBtn}}}
+		</div>
+	</div>
+</div>

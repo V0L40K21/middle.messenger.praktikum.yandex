@@ -30,9 +30,7 @@ export class ChatsBottom extends Block {
 				submit: (event: Event) => {
 					event.preventDefault()
 					const data: {[key: string]: string} = {}
-					const input = document.getElementById(
-						'messageBox'
-					) as HTMLInputElement
+					const input = document.getElementById('messageBox') as HTMLInputElement
 
 					data[input.name] = input.value
 					validate(input)
@@ -42,7 +40,7 @@ export class ChatsBottom extends Block {
 					).length
 					if (!isValid) {
 						input.value = ''
-						console.log('data :', JSON.stringify(data))
+						console.log('ChatsBottom data :', JSON.stringify(data))
 					}
 				}
 			}

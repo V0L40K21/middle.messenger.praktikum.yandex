@@ -1,11 +1,12 @@
 # ЯМессенджер
 
-## Второй спринт обучения на яндекс практикум
+## Третий спринт обучения на яндекс практикум
 
 ### Ссылки
 
 - [![Figma][figma-logo]][figma]
 - [![Netlify][netlify-logo]][netlify]
+  [![Netlify Status](https://api.netlify.com/api/v1/badges/928b0122-4636-4be4-9fef-74853061bff3/deploy-status)](https://app.netlify.com/sites/jolly-alpaca-a2867e/deploys)
 
 ### Используемые технологии
 
@@ -56,7 +57,7 @@ npm run dev
 
 [figma]: https://www.figma.com/file/8LCU6aCyyaQ676QLNFKRh7/yandex_sprint_1?type=design&node-id=0%3A1&mode=design&t=KGAVlHPT6NOzsHbD-1
 [figma-logo]: https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=black
-[netlify]: https://655e596e1c57176df88dea3a--jolly-alpaca-a2867e.netlify.app
+[netlify]: https://jolly-alpaca-a2867e.netlify.app
 [netlify-logo]: https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7
 [handlebars]: https://handlebarsjs.com/
 [handlebars-logo]: https://img.shields.io/badge/Handlebars-23272f?style=for-the-badge&logo=handlebarsdotjs

@@ -1,0 +1,17 @@
+<div class='chatListItem'>
+	<div class='chatListItem_left'>
+		{{#if avatar}}
+			<img class='chatListItem_left__photo_avatar' src={{avatar}} alt='Chat avatar' />
+		{{else}}
+			<div class='chatListItem_left__photo'></div>
+		{{/if}}
+	</div>
+	<div class='chatListItem_center'>
+		<div class='chatListItem_center__name'>{{title}}</div>
+	</div>
+	<div class='chatListItem_right'>
+		{{#if unread_count}}
+			<div class='chatListItem_right__count'>{{unread_count}}</div>
+		{{/if}}
+	</div>
+</div>

@@ -1,12 +1,13 @@
-import {render} from '../../utils/render'
+import {EAppRoutes} from '../../constants'
 import Block from '../../utils/Block'
-import './errors.scss'
+import Router from '../../utils/Router'
 import template from './500.hbs'
+import './errors.scss'
 
 export class E500 extends Block {
 	constructor() {
 		super({
-			onClick: () => render('chats')
+			onClick: () => Router.go(EAppRoutes.Messenger)
 		})
 	}
 

@@ -1,79 +1,103 @@
-const METHODS = {
-	GET: 'GET',
-	PUT: 'PUT',
-	POST: 'POST',
-	DELETE: 'DELETE'
+import {EAppRoutes} from '../constants'
+import Helpers from './Helpers'
+import router from './Router'
+import store from './Store'
+
+enum EMETHODS {
+	GET = 'GET',
+	PUT = 'PUT',
+	POST = 'POST',
+	DELETE = 'DELETE'
 }
 
 type TOptions = {
-	method: string
-	data: Record<string, string>
-	timeout: number
-	headers: Record<string, string>
+	method?: EMETHODS
+	data?: any
+	timeout?: number
+	headers?: Record<string, string>
 }
 
 export class HTTPTransport {
-	queryStringify(data: Record<string, string>) {
-		return Object.entries(data ?? {})
-			.map(([key, value]) => `${key}=${value}`)
-			.join('&')
+	static baseURL = 'https://ya-praktikum.tech/api/v2'
+
+	protected endpoint: string
+
+	constructor(endpoint: string) {
+		this.endpoint = `${HTTPTransport.baseURL}${endpoint}`
 	}
 
-	get(url: string, options: TOptions = {} as TOptions) {
-		const queryString = this.queryStringify(options.data)
-		const fullUrl = queryString ? `${url}?${queryString}` : url
+	get<T>(path: string, options: TOptions = {}) {
+		const {data} = options
+		const queryString = Helpers.queryStringify(data ?? {})
+		const fullUrl = queryString
+			? `${this.endpoint}${path}?${queryString}`
+			: this.endpoint + path
 
-		return this.request(
-			fullUrl,
-			{
-				...options,
-				method: METHODS.GET
-			},
-			options.timeout
-		)
+		return this.request<T>(fullUrl)
 	}
 
-	put(url: string, options: TOptions = {} as TOptions) {
-		return this.request(url, {...options, method: METHODS.PUT})
+	put<T>(path: string, data: unknown = {}) {
+		return this.request<T>(this.endpoint + path, {data, method: EMETHODS.PUT})
 	}
 
-	post(url: string, options: TOptions = {} as TOptions) {
-		return this.request(url, {...options, method: METHODS.POST})
+	post<T>(path: string, data: unknown = {}) {
+		return this.request<T>(this.endpoint + path, {data, method: EMETHODS.POST})
 	}
 
-	delete(url: string, options: TOptions = {} as TOptions) {
-		return this.request(url, {...options, method: METHODS.DELETE})
+	delete<T>(path: string, data: unknown = {}) {
+		return this.request<T>(this.endpoint + path, {data, method: EMETHODS.DELETE})
 	}
 
-	request(url: string, options: TOptions = {} as TOptions, timeout: number = 5000) {
+	async request<T>(
+		path: string,
+		options: TOptions = {method: EMETHODS.GET},
+		timeout: number = 5000
+	): Promise<T> {
+		const {method, data, headers = {}} = options
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest()
-			xhr.open(options.method, url)
+			if (method) {
+				xhr.open(method, path)
+			}
 
-			if (options.headers) {
-				Object.keys(options.headers).forEach((key) => {
-					xhr.setRequestHeader(key, options.headers[key])
+			if (headers) {
+				Object.entries(headers).forEach(([name, value]) => {
+					xhr.setRequestHeader(name, value)
 				})
 			}
 
 			xhr.onerror = () => reject(new Error('Network error'))
 			xhr.ontimeout = () => reject(new Error('Timeout error'))
 			xhr.onabort = () => reject(new Error('Request aborted'))
+			xhr.withCredentials = true
+			xhr.responseType = 'json'
 
 			xhr.timeout = timeout
 
-			if (options.method === METHODS.GET) {
+			if (method === EMETHODS.GET) {
 				xhr.send()
+			} else if (data instanceof FormData) {
+				xhr.send(data)
 			} else {
-				const requestData =
-					typeof options.data === 'object' ? JSON.stringify(options.data) : options.data
+				const requestData = typeof data === 'object' ? JSON.stringify(data) : data
 				xhr.setRequestHeader('Content-Type', 'application/json')
 				xhr.send(requestData)
 			}
 
 			xhr.onload = () => {
-				console.log(xhr)
-				resolve(xhr)
+				if (xhr.status === 200) {
+					resolve(xhr.response)
+				} else {
+					if (xhr.status === 401 || xhr.response.reason === 'Cookie is not valid') {
+						router.go(EAppRoutes.Auth)
+					} else if (xhr.response.reason === 'User already in system') {
+						router.go(EAppRoutes.Messenger)
+					}
+					store.set('error', xhr.response.reason ?? xhr.statusText)
+					reject(
+						new Error(`${xhr.status}-я ошибка: ${xhr.response.reason ?? xhr.statusText}`)
+					)
+				}
 			}
 		})
 	}
