@@ -1,7 +1,7 @@
-import {TChatInfo, TSocketMessage, TUser} from '../api/types'
-import Block from './Block'
-import {EventBus} from './EventBus'
-import Helpers from './Helpers'
+import {TChatInfo, TSocketMessage, TUser} from '../api/types.ts'
+import Block from './Block.ts'
+import {EventBus} from './EventBus.ts'
+import Helpers from './Helpers.ts'
 
 export enum StoreEvents {
 	Updated = 'updated'

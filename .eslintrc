@@ -34,6 +34,16 @@
     "max-classes-per-file": "off",
     "object-curly-newline": "off",
     "semi": "off",
-    "semi-style": "off"
+    "semi-style": "off",
+    "no-new": "off",
+    "no-console": "off",
+    "consistent-return": "off",
+    "import/extensions": [
+      "off",
+      "always",
+      {
+        "ts": "allow"
+      }
+    ]
   }
 }
