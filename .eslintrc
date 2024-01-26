@@ -36,6 +36,7 @@
     "semi": "off",
     "semi-style": "off",
     "no-new": "off",
+    "no-console": "off",
     "import/extensions": [
       "off",
       "always",
