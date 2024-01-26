@@ -35,6 +35,7 @@
     "object-curly-newline": "off",
     "semi": "off",
     "semi-style": "off",
+    "no-new": "off",
     "import/extensions": [
       "off",
       "always",
