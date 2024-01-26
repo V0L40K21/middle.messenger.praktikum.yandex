@@ -2,5 +2,11 @@
   "extension": [".ts"],
   "spec": " ./src/**/*.test.ts",
   "require": ["./mochaSetup.js"],
-  "node-option": ["loader=node-esm-loader", "loader=esmock"]
+  "node-option": [
+    "loader=node-esm-loader",
+    "loader=esmock",
+    "loader=esm-loader-typescript",
+    "loader=esm-loader-css",
+    "loader=./hbsLoader.js"
+  ]
 }
