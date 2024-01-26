@@ -1,5 +1,5 @@
-import Block from '../utils/Block'
-import Router from '../utils/Router'
+import Block from '../utils/Block.ts'
+import Router from '../utils/Router.ts'
 
 export function withRouter(Component: typeof Block<any>) {
 	type Props = typeof Component extends typeof Block<infer P extends Record<string, any>>

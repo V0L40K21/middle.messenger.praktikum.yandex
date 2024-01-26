@@ -1,5 +1,5 @@
-import {PropsWithRouter, withRouter} from '../../hocs/withRouter'
-import Block from '../../utils/Block'
+import {PropsWithRouter, withRouter} from '../../hocs/withRouter.ts'
+import Block from '../../utils/Block.ts'
 import template from './Link.hbs'
 
 interface ILinkProps extends PropsWithRouter {
@@ -11,7 +11,7 @@ interface ILinkProps extends PropsWithRouter {
 	}
 }
 
-class BaseLink extends Block<ILinkProps> {
+export class BaseLink extends Block<ILinkProps> {
 	constructor(props: ILinkProps) {
 		super({
 			...props,
