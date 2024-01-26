@@ -1,7 +1,7 @@
-import {EAppRoutes} from '../constants'
-import Helpers from './Helpers'
-import router from './Router'
-import store from './Store'
+import {EAppRoutes} from '../constants.ts'
+import Helpers from './Helpers.ts'
+import router from './Router.ts'
+import store from './Store.ts'
 
 enum EMETHODS {
 	GET = 'GET',

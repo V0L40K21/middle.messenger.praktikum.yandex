@@ -1,6 +1,6 @@
 # ЯМессенджер
 
-## Третий спринт обучения на яндекс практикум
+## Четвёртый спринт обучения на яндекс практикум
 
 ### Ссылки
 
@@ -19,6 +19,9 @@
 - [![ESLint][eslint-logo]][eslint]
 - [![Prettier][prettier-logo]][prettier]
 - [![Stylelint][stylelint-logo]][stylelint]
+- [![Mocha][mocha-logo]][mocha]
+- [![Chai][chai-logo]][chai]
+- [![Sinon][sinon-logo]][sinon]
 
 ### Установка
 
@@ -35,6 +38,14 @@ npm install
 ```bash
 npm run lint-fix
 npm run build
+```
+
+### Тестирование
+
+Чтобы запустить тесты необходимо прописать команду:
+
+```bash
+npm run test
 ```
 
 ### Запуск
@@ -89,3 +100,9 @@ npm run dev
 [prettier-logo]: https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E
 [stylelint]: https://stylelint.io
 [stylelint-logo]: https://img.shields.io/badge/stylelint-000?style=for-the-badge&logo=stylelint&logoColor=white
+[mocha]: https://mochajs.org
+[mocha-logo]: https://img.shields.io/badge/mocha.js-323330?style=for-the-badge&logo=mocha&logoColor=Brown
+[chai]: https://www.chaijs.com
+[chai-logo]: https://img.shields.io/badge/chai.js-323330?style=for-the-badge&logo=chai&logoColor=red
+[sinon]: https://sinonjs.org
+[sinon-logo]: https://img.shields.io/badge/sinon.js-323330?style=for-the-badge&logo=sinon
