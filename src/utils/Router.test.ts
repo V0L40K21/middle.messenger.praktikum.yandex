@@ -1,6 +1,6 @@
 import sinon from 'sinon'
-import Router, {BlockConstructable} from './Router.ts'
 import {expect} from 'chai'
+import Router, {BlockConstructable} from './Router.ts'
 
 describe('Router', () => {
 	global.window.history.back = () => {
