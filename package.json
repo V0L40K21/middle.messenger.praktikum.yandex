@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "eslint ./src && stylelint \"**/*.scss\"",
     "lint-fix": "eslint ./src --fix && stylelint \"**/*.scss\"",
-    "test": "mocha"
+    "test": "mocha",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
@@ -34,7 +35,7 @@
     "esm-loader-typescript": "^1.0.6",
     "esmock": "^2.6.3",
     "handlebars": "^4.7.8",
-    "husky": "^9.0.5",
+    "husky": "^9.0.6",
     "jsdom": "^24.0.0",
     "mocha": "^10.2.0",
     "node-esm-loader": "^0.3.0",
