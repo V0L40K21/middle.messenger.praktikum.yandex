@@ -10,8 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint ./src && stylelint \"**/*.scss\"",
     "lint-fix": "eslint ./src --fix && stylelint \"**/*.scss\"",
-    "test": "mocha",
-    "prepare": "husky install"
+    "test": "mocha"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
@@ -55,5 +54,11 @@
     "express": "^4.18.2",
     "express-history-api-fallback": "^2.2.1",
     "nanoid": "^5.0.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:all",
+      "pre-push": "npm run other command"
+    }
   }
 }
